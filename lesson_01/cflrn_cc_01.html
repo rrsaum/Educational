@@ -3,11 +3,85 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	<title>SCORM Data Model Example</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />	
+	<title>CidiLabs 101 Participant Survey</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<link rel="stylesheet" href="../Shared Files/css/style.css" type="text/css" />
 	<script type="text/javascript" src="../Shared Files/scripts/dmceFunctions.js"></script>
 	<script type="text/javascript" src="../Shared Files/scripts/APIWrapper.js"></script>
+
+	<script type="text/javascript">
+		
+		// setting the variable used to track if question has been submitted (not SCORM-related)
+		var q1Submitted = false;
+		/*******************************************************************************
+		**
+		** This function checks to see if the user has already submitted an answer to the question.
+		** If it is the first time an answer has been submitted the "radio_validate" function is called.
+		** Please refer to radio_validate in "interactions_assets_scripts.js" for more information.
+		** 
+		** If the question has been answered then the user is notified.
+		**
+		** Inputs:  formName - String - the id of the form to check
+		**
+		** Return:  None
+		**
+		*******************************************************************************/
+		function checkQuestion(formName)
+		{
+			// you can't count on any one index remaining static, so for each new interaction, check to see where we are in the cmi.interactions array
+			var index = retrieveDataValue("cmi.interactions._count");
+			
+			// Set the Interaction ID
+			storeDataValue("cmi.interactions."+index+".id", "interaction_001");
+			
+			// Set the Interaction type for this "interaction"
+			storeDataValue("cmi.interactions."+index+".type", "choice");
+			
+			// Set the user response
+			storeDataValue("cmi.interactions."+index+".student_response", formName.answer.value); //formName
+		
+			// setting the correct answer for our validation on the page (not SCORM-related)
+			// NOTE:  You might want to obfuscate the access to this so the answer isn't easily viewable
+			var correctAnswer = "5"; //should be the same as the "value" attribute of the radio button with the correct answer
+			
+			
+			// since we're using "correctAnswer" as a variable for the correct response, we set the Interaction's correct response to "correctAnswer"
+			storeDataValue("cmi.interactions."+index+".correct_responses.0.pattern", correctAnswer);
+		
+			// the student_response field appears to be unsupported in Canvas, using the weighting field in place of it.
+			storeDataValue("cmi.interactions."+index+".weighting", formName.answer.value);
+		
+			// to describe this Interaction, we'r using the actual test question
+			storeDataValue("cmi.interactions."+index+".description", "{lang=en-US}The following is an example of what Interaction Type? Strongly Agree | Agree | Neither Agree nor Disagree | Disagree | Strongly Disagree");
+			
+			
+			//check to see if the question has been submitted
+			if( !q1Submitted ) 
+			{
+				
+				//radio_validate returns a boolean: true = the user answered the question, false = the user did not answer the question (not SCORM-related)
+				answerSelected = radio_validate( formName, correctAnswer, index, 'interactions' ); 
+				
+				// If you are interested in how we set the set the learnerResponse, please 
+				// refer to the dmceFunctions.js file
+				
+				if(answerSelected) 
+				{
+					q1Submitted = true;
+					
+
+					document.getElementById('submit').disabled = true;
+					document.getElementById('reset').disabled = true;
+				}
+			}
+			else
+			{
+				//alreadyAnswered is a global variable defined in "interactions_assets_scripts.js"
+				alert(alreadyAnswered);
+			}
+		}// end function
+
+	</script>
 </head>
 
 <body onload="javascript:Initialize();" onunload="javascript:onUnexpectedExit ( '01' );">
@@ -17,21 +91,43 @@
 		<!--
 			loadHeader("Comments From Learner - Conceptual Content");
 		-->
-		</script>
+		</script>	
+	
 		<!-- Main page content -->
 		<div id="fullScreen">
-			<p id="heading">What is the Comments From Learner Data Model Element?</p>
-			<div id="content">
-				<p> Comments From Learner is the data model element that allows the learner to provide feedback about a Sharable Content Object (SCO) or the learning experience with a SCO.</p>
-		  	</div>
-			<!-- end main content -->
-			<!-- Bottom page navigation -->
-			<form id="navigation" action="">
-				<div id="prevBtn" style="VISIBILITY: hidden"><input id="prevBtn" type="button" value="&lt;&lt; Prev" onclick="javascript:Previous();" /></div>
-				<div id="nextBtn"><input id="nextBtn" type="button" value="Next &gt;&gt;" onclick="javascript:GoToPage( 'cflrn_cc_02.html' );"  /></div>
-			</form>
-		</div>
-	</div> 
-	<!-- end main page style -->
+		<h2>Feedback Survey</h2>
+			<p id="heading">Question 1<br/>
+				<span id="content">Do you agree/disagree with the following statement: the content of this self-paced workshop will be benefitial to my teaching.</span>
+			</p>
+			
+
+				<!-- the id is the formName that should get passed to the JavaScript function called in the Submit button "onclick" attrib  -->
+				<form id="q1" action="" onSubmit="return false;">
+					
+						<div><input type="radio" name="answer" value="1" onclick="enableSubmit()" tabindex="0" />Strongly Disagree<br /></div>
+						<div><input type="radio" name="answer" value="2" onclick="enableSubmit()" tabindex="1" />Disagree<br /></div>
+						<div><input type="radio" name="answer" value="3" onclick="enableSubmit()" tabindex="2" />Neither Agree nor Disagree<br /></div>
+						<div><input type="radio" name="answer" value="4" onclick="enableSubmit()" tabindex="3" />Agree</div>
+						<div><input type="radio" name="answer" value="5" onclick="enableSubmit()" tabindex="4" />Strongly Agree</div>
+						<br/>
+						<div>
+							<input type="reset" name="reset" value="Reset" tabindex="5" />&nbsp;&nbsp;
+							<input type="button" name="submit" value="Submit" onclick="checkQuestion(q1)" tabindex="5" />
+							<br/><span id="feedback">&nbsp;</span>						
+						</div>
+				</form>
+				<script type="text/javascript" >
+					disableSubmit();
+				</script>
+		</div>		
+		<!-- end main content -->
+	
+		<!-- Bottom page navigation -->
+		<form id="navigation" action="">
+			<div id="prevBtn"></div>		
+		</form>
+
+</div>
+	
 </body>
 </html>

@@ -10,57 +10,39 @@
 	<script type="text/javascript" src="../Shared Files/scripts/APIWrapper.js"></script>
 </head>
 
-<body onunload="javascript:onUnexpectedExit ( '02' );">
+<body onload="javascript:displayNext();" onunload="javascript:Terminate();">
 	<div id="wrapper">
 		<script type="text/javascript" language="javascript">
 		<!--
 			loadHeader("Comments From Learner - Conceptual Content");
-			
-			SendComment = function ( commentForm )
-			{
-				// exactly how many comments do we have from learners?
-				var i = retrieveDataValue( "cmi.comments_from_learner._count" );
-				
-				// set the location for this comment
-				var location = "cflrn_cc_02"
-				
-				// set up the timestamp in a format that SCORM likes
-				var now = new Date;
-				var yyyy = now.getFullYear();
-				var mm = Number( now.getMonth() ) + 1;
-				if ( mm < 10 ) mm = "0" + mm;
-				var dd = now.getDate();
-				if ( dd < 10 ) dd = "0" + dd;
-				var hh = now.getHours();
-				if ( hh < 10 ) hh = "0" + hh; 
-				var mn = now.getMinutes();
-				if ( mn < 10 ) mn = "0" + mn;
-				var ss = now.getSeconds();
-				if ( ss < 10 ) ss = "0" + ss;
-				var timestamp = yyyy+"-"+mm+"-"+dd+"T"+hh+":"+mn+":"+ss;
-				
-				// send these values off to the LMS...
-				storeDataValue ( "cmi.comments_from_learner." + i + ".timestamp", timestamp );
-				storeDataValue ( "cmi.comments_from_learner." + i + ".location", location );
-				storeDataValue ( "cmi.comments_from_learner." + i + ".comment", commentForm.learner_comments.value );
-				GoToPage( 'cflrn_cc_03.html' );
-			}
 		-->
 		</script>
 		<!-- Main page content -->
 		<div id="fullScreen">
-			<p id="heading">Provide Comments</p>
+			<p id="heading">Comments Results</p>
 			<div id="content">
-				<p>The following is an example of how the Comments From Learner Data Model Element could be used for this content piece.  Type in your comments on the Comments From Learner Data Model Element and click Submit when finished.</p>
-				<form name="commentary" action="" onSubmit="return false;">
-					<p><textarea name="learner_comments" cols="60" rows="4"></textarea></p>
-					<p><input type="reset" /> <input type="button" value="Submit" onclick="javascript:SendComment( commentary );"  /></p>
-				</form>
-			</div>
-			<!-- end main content -->
+				<p>In the case where an LMS provides a mechanism for displaying comments entered by a learner specific to the content, the comments you entered on the previous page could be displayed to the content creators by the LMS in a report similar to the following:</p>
+				<script language="javascript">
+				<!--
+					var name = retrieveDataValue ( "cmi.learner_name" );
+					var uid =  retrieveDataValue ( "cmi.learner_id" );
+					
+					var comments = '';
+					comments.push( "<p>&lt; Username &gt; " + name + "<br /> &lt; ID &gt; " + uid + "<br />&lt; Feedback &gt;" + feedback + "<br />&lt; Timestamp &gt;" + time + "</p>");
+					
+					// insert results of comments typed, or example of what would appear
+						document.write( comments );
+				-->
+				</script>  
+				<p><em>This is only an example of how Comments From Learner results could be displayed by an LMS. Each LMS may or may not provide this capability. If this capability is provided, how this data is rendered is an implementation requirement of an LMS.</em></p>
+		  	</div>		
 			<form id="navigation" action="">
-				<div id="prevBtn"><input id="prevBtn" type="button" value="&lt;&lt; Prev" onclick="javascript:GoToPage( 'cflrn_cc_01.html' );"  /></div>
-				<div id="nextBtn"><input id="nextBtn" type="button" value="Next &gt;&gt;" onclick="javascript:GoToPage( 'cflrn_cc_03.html' );" /></div>
+				<div id="prevBtn"><input id="prevBtn" type="button" value="&lt;&lt; Prev" onclick="javascript:GoToPage( 'cflrn_cc_01html' );"  /></div>
+
+				<div id="returnToLms" class="enabledTopMenuItem" title="RETURN TO LMS">
+					<input id="nextBtn" type="button" onclick="GetControlWindow().Control.TriggerReturnToLMS();" onmouseover="window.status='RETURN TO LMS';return true;" onmouseout="window.status='';return true;" value="Next &gt;&gt; " alt="Return to LMS" />
+				</div>
+
 			</form>
 		</div>
 	</div> 
