@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>SCORM Data Model Example</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />	
+	<link rel="stylesheet" href="../Shared Files/css/style.css" type="text/css" />
+	<script type="text/javascript" src="../Shared Files/scripts/dmceFunctions.js"></script>
+	<script type="text/javascript" src="../Shared Files/scripts/APIWrapper.js"></script>
+</head>
+
+<body onload="javascript:displayNext();" onunload="javascript:Terminate();">
+	<div id="wrapper">
+		<script type="text/javascript" language="javascript">
+		<!--
+			loadHeader("Comments From Learner - Conceptual Content");
+		-->
+		</script>
+		<!-- Main page content -->
+		<div id="fullScreen">
+			<p id="heading">Comments Results</p>
+			<div id="content">
+				<p>In the case where an LMS provides a mechanism for displaying comments entered by a learner specific to the content, the comments you entered on the previous page could be displayed to the content creators by the LMS in a report similar to the following:</p>
+				<script language="javascript">
+				<!--
+					var count = retrieveDataValue ( "cmi.comments_from_learner._count" );
+					var comments = new Array();
+					
+					for (i = 0; i < count; i++)
+					{
+						var tempLocation = retrieveDataValue ( "cmi.comments_from_learner." + i + ".location" );
+						
+						if ( tempLocation == "cflrn_cc_04" )
+						{
+							var name = retrieveDataValue ( "cmi.learner_name" );
+							var uid =  retrieveDataValue ( "cmi.learner_id" );
+							
+							var comment = retrieveDataValue ( "cmi.comments_from_learner." + i + ".comment" );
+							var time = retrieveDataValue ( "cmi.comments_from_learner." + i + ".timestamp" );
+							
+							comments.push( "<p>&lt; Username &gt; " + name + "<br /> &lt; ID &gt; " + uid + "<br /> &lt; Comment &gt; " + comment + "<br /> &lt; Location &gt; " + tempLocation + "<br />&lt; Timestamp &gt;" + time + "</p>");
+						}
+					}
+					
+					// insert results of comments typed, or example of what would appear
+					for (var i = comments.length - 1; i >= 0; i-- )
+					{
+						document.write( comments[i] );
+					}
+				-->
+				</script>  
+				<p><em>This is only an example of how Comments From Learner results could be displayed by an LMS. Each LMS may or may not provide this capability. If this capability is provided, how this data is rendered is an implementation requirement of an LMS.</em></p>
+		  	</div>		
+			<form id="navigation" action="">
+				<div id="prevBtn"><input id="prevBtn" type="button" value="&lt;&lt; Prev" onclick="javascript:GoToPage( 'cflrn_cc_04.html' );"  /></div>
+				<div id="nextBtn" style="VISIBILITY: hidden"><input id="nextBtn" type="button" onclick="javascript:Continue();" value="Next &gt;&gt; "  /></div>
+			</form>
+		</div>
+	</div> 
+	<!-- end main page style -->
+</body>
+</html>
