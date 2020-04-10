@@ -632,49 +632,6 @@ function storeLearnersCode( feedbackPage, startingIndex )
 		GoToPage( feedbackPage );
 }
 
-
-
-function loadHeader( dme )
-{
-
-		// Get the header and subheader from the params
-		var g_params = new Array(10);
-
-		// These will hold the value of the parameters you sent in using the item parameter attribute:
-		//DME = g_params["DME"];
-		//lesson = g_params["lesson"];
-		//lesson = "testing";
-		document.write("<!-- Course Title -->");
-		document.write("<h1 id=\"smallTitle\">Sharable Content Object Reference Model (SCORM<span style=\"font-size:xx-small; vertical-align:text-top\">&reg;</span>) 2004 3rd Edition</h1>");
-		document.write("<h1> Data Model Elements</h1>");
-
-		document.write("<!-- Section Title that appears in top box -->");
-		document.write("<h2>"+dme+"</h2>");
-
-		//check to see if the dme being loaded in is 'Application'
-		if( dme == "Application")
-		{
-			document.write("<!-- Top nav links: Glossary, Best Practices for Id, RTE, Best Practices for Developer -->");
-			document.write("<div id=\"links\">");
-			document.write("<ul>");
-				document.write("<li id=\"glossary\"><a href=\"javascript:popup( '../html/glossary.html' )\">Glossary</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>");
-				document.write("<li id=\"rte\"><a href=\"http://www.adlnet.gov\" target=\"_blank\">SCORM</a></li>");
-			document.write("</ul>");
-			document.write("</div>");
-		}
-		else
-		{
-			document.write("<!-- Top nav links: Glossary, Best Practices for Id, RTE, Best Practices for Developer -->");
-			document.write("<div id=\"links\">");
-			document.write("<ul>");
-				document.write("<li id=\"glossary\"><a href=\"javascript:popup( '../Shared%20Files/html/glossary.html' )\">Glossary</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>");
-				document.write("<li id=\"rte\"><a href=\"http://www.adlnet.gov\" target=\"_blank\">SCORM</a></li>");
-			document.write("</ul>");
-			document.write("</div>");
-		}
-}
-
-
 /**********************************************************************
  **  Function: get_params()
  **  Description: This function is used to get the parameters from the
@@ -698,30 +655,14 @@ function get_params()
 
 }
 
+function quit(){
 
+   if(courseStatus === "completed"){
+      scorm.set("cmi.exit", "logout");
+   } else {
+      scorm.set("cmi.exit", "suspend");
+   }
+   
+   scorm.quit();
 
-function submitFORM(path, params) {
-
-    var form = document.createElement("form");
-    form.setAttribute("method", "POST");
-    form.setAttribute("action", path);
-
-    //Move the submit function to another variable
-    //so that it doesn't get overwritten.
-    form._submit_function_ = form.submit;
-
-    for(var key in params) {
-        if(params.hasOwnProperty(key)) {
-            var hiddenField = document.createElement("input");
-            hiddenField.setAttribute("type", "hidden");
-            hiddenField.setAttribute("name", key);
-            hiddenField.setAttribute("value", params[key]);
-
-            form.appendChild(hiddenField);
-         }
-    }
-	
-	form.serialize();
-    document.body.appendChild(form);
-    form._submit_function_();
 }
