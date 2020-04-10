@@ -79,36 +79,18 @@
 			feedback = incorFeedback;
 		}
 	</script>
-
 </head>
 
 <body>
-	<div id="wrapper">
-		<script type="text/javascript" language="javascript">
-		<!--
-			loadHeader("Interactions - Conceptual Content Assessment");
-		-->
-		</script>
-		
-		<!-- Main page content -->
-		<div id="fullScreen">
-			<p id="heading">
-				<script type="text/javascript">document.writeln( result );</script>
-			</p>
-		  <div id="content">
-				<p><script type="text/javascript">document.writeln( feedback );</script> </p>
-				<p><script type="text/javascript">document.writeln( split_name['1']+"<br>"+uid['1']+"<br>"+user_response );</script> </p>
-			
-			<p>Click <i>Next</i> to continue.</p>
+	<div class="container">
+		<h1>Thank You!</h1>
+		<div id="Main_Content">
+			<p><br><script type="text/javascript">document.writeln( split_name['1']+", We appreciate your feedback." );</script> </p>
+			<p>&nbsp;</p>
+			<p>Select the Next button to continue.</p>
 		</div>
-	
-			<!-- Next button-->		
-			<form id="navigation" action="">
-				<div id="nextBtn"><input id="nextBtn" style="bottom:5px; right:5px;" type="button" value="Next &gt;&gt;" onclick="javascript:GoToPage( nextPageURL );" /></div>
-			</form>	
-		</div>
-		<!-- end main content -->
 	</div>
+	
 </body>
 </html>
 
