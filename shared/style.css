@@ -1,0 +1,303 @@
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #ccc;
+  font: 10pt "Tahoma";
+}
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+.MastHead{
+  width:100%;
+  border-bottom: #ccc solid 2px;
+  margin-bottom: 10px
+}
+img.icnh {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+}
+.AssignHead {
+  color: #ccc;
+  margin: 10px;
+}
+ul.AssignMenu {
+  list-style-type: none;
+  padding: 5px;
+  line-height: 200%;
+}
+.AssignMenu li{
+  border-bottom: #ccc solid 2px;
+  width: 65%;
+}
+.AssignSpan {
+  padding: 5px;
+}
+img.icn {
+  margin-left: -15px;
+  height: 40px;
+  width: 40px;
+  margin-top:-5px;
+}
+a.btn {
+  color:#000;
+  padding: 0px;
+  text-decoration: none;
+}
+ul.sg-actions {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  margin-top:5px !important;
+  background:#556572;
+}
+.sg-actions li {
+  display: inline;
+  list-style-type: inline;
+  color: #fff;
+  float: left;
+}
+.sg-actions li{
+  /* vertical-align: middle;
+  vertical-align: baseline;
+  vertical-align: sub;
+  vertical-align: super;
+  vertical-align: text-top;
+  vertical-align: text-bottom;
+  vertical-align: top;
+  */
+  vertical-align: bottom !important;
+}
+.sg-actions li img.last{
+  border-right: dashed #eee 1px !important;
+}
+a:hover img.icnh{
+  text-decoration: none;
+  background-color:#ccc;
+}
+.sg-actions li.last{
+  border-right: dashed #eee 1px !important;
+}
+li.bigger{
+  font-weight: 700;
+  font-size: 170%;
+}
+a.pages {
+  text-decoration: none;
+  color:#fff;
+}
+a.pages:hover{
+  text-decoration: none;
+  background-color:#ccc;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 120%;
+  border-radius: 12px;
+}
+#butPrevious, #butNext{
+  background-color: #555555;
+}
+#butPrevious, #butNext, #butExit {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+#butExit {
+  background-color: #ccc;
+}
+#butPrevious:hover, #butNext:hover, #butExit:hover {
+  -webkit-transition-duration: 0.4s;
+  /* Safari */
+  transition-duration: 0.4s;
+  background-color: #ffffff;
+  color: #000;
+}
+.counter{
+  margin-right: -30px !important;
+  position: relative;
+  text-align: center;
+  color: #000;
+}
+sup {
+  font-weight: 900;
+  color: navy;
+}
+/* This is for simulating pages */
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 20mm;
+  margin: 10mm auto;
+  border: 1px #D3D3D3 solid;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.subpage {
+  padding: 1cm;
+  border: 5px #666 solid;
+  height: 257mm;
+  outline: 2cm #eee solid;
+}
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print {
+  html, body {
+    width: 210mm;
+    height: 297mm;
+  }
+  .page {
+    margin: 0;
+    border: initial;
+    border-radius: initial;
+    width: initial;
+    min-height: initial;
+    box-shadow: initial;
+    background: initial;
+    page-break-after: always;
+  }
+}
+/* End Pages */
+/* This is for the highlighter */
+a.highlight {
+  background-color: #ffffff;
+  cursor: pointer;
+  text-decoration: none !important;
+  border-bottom-style: none;
+  color: #000;
+}
+a:hover.highlight, a:visited.highlight, a:link.highlight, a:active.highlight{
+  background-color: #ffffff;
+  cursor: pointertext-decoration: none !important;
+  color: #000;
+}
+span.highlight {
+  background-color: yellow;
+  cursor: pointer;
+}
+#mark {
+  cursor: pointer;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+.col-8 {
+  margin:0;
+  padding:0
+}
+.col-4 {
+  margin:0;
+  padding:0
+}
+iframe#ifrm {
+  border:1px solid #ccc;
+  width:100%;
+}
+#alertdiv {
+  margin-top: 10px !important;
+}
+/* FontAwesome */
+.fas {
+  font-size: 150%
+}
+.far {
+  font-size: 150%
+}
+.fa {
+  font-size: 150%
+}
+/* Floating info button: http://materialdesignblog.com/creating-a-simple-material-design-action-button-with-css/;
+*/
+.fab {
+  border-radius: 50%;
+  box-shadow: 0 6px 10px 0 #666;
+  transition: all 0.1s ease-in-out;
+  font-size: 40px;
+  color: blue;
+  text-align: center;
+  line-height: 50px;
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+}
+.fab:hover {
+  box-shadow: 0 6px 14px 0 #666;
+  transform: scale(1.07);
+}
+.hidden {
+  display: none;
+}
+.pow {
+  background-color:#00cc99;
+  border: 1px #666 solid;
+  padding:10px
+}
+form-group {
+  text-align:left;
+  position: relative;
+  padding-top: 1.5rem;
+}
+label {
+  position: absolute;
+  top: 0;
+  font-size: var(--font-size-small);
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.2s ease-out;
+}
+input:placeholder-shown + label {
+  opacity: 0;
+  transform: translateY(1rem);
+}
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+}
+fieldset {
+  position: relative;
+}
+/* Style the submit button */
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+/* Style the container */
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+.custom-control {
+  text-align:left;
+}
+.hide {
+  visibility: hidden;
+}
+h1 {
+  background:#00549a !important;
+  color:#fff;
+  padding:10px;
+}
+form {
+  background:#fff;
+}
+#Main_Content {
+  background:#fff;
+  padding:10px;
+}
