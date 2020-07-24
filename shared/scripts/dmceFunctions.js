@@ -666,3 +666,83 @@ function quit(){
    scorm.quit();
 
 }
+
+
+
+
+
+// From: https://stackoverflow.com/questions/16604407/jquery-remove-bootstrap-alert-after-certain-amount-of-time
+// Alert Type: alert-success, alert-info, alert-warning, alert-danger
+// https://www.w3schools.com/bootstrap/bootstrap_alerts.asp
+$(document).ready(function() {
+    $('#msg4').on( "click", function() {
+      showAlert( "<ul><li>Select the <strong>'View Rubric'</strong> button</li></ul>", "alert-info", "fas fa-info-circle" );
+    } );
+    $('#msg5').on( "click", function() {
+      showAlert( "<ul><li>Under the Ratings column, choose <strong>'Full Marks'</strong> for each of the three grading criteria.</li><li><strong>Note:</strong> do not enter a point value</li><li>Select <strong>'Save'</strong></li></ul>", "alert-info", "fas fa-info-circle" );
+    } );
+    $('#msgFail').on( "click", function() {
+      showAlert( "Incorrect: You have selected the wrong item. Try again or selct the Information icon for instructions.", "alert-danger", "fa fa-warning" );
+    } );
+    // Match string (https://api.jquery.com/attribute-contains-selector/)
+    $("div[id*='msgFail']").on( "click", function() {
+      showAlert( "Incorrect: You have selected the wrong item. Try again or selct the Information icon for instructions.", "alert-danger", "fa fa-warning" );
+    } );
+    $("li[id*='msgFail']").on( "click", function() {
+      showAlert( "Incorrect: You have selected the wrong item. Try again or selct the Information icon for instructions.", "alert-danger", "fa fa-warning" );
+    } );
+    $("img[id*='msgFail']").on( "click", function() {
+      showAlert( "Incorrect: You have selected the wrong item. Try again or selct the Information icon for instructions.", "alert-danger", "fa fa-warning" );
+    } );
+    $("button[id*='msgFail']").on( "click", function() {
+      showAlert( "Incorrect: You have selected the wrong item. Try again or selct the Information icon for instructions.", "alert-danger", "fa fa-warning" );
+    } );
+    $("p[id*='msgFail']").on( "click", function() {
+      showAlert( "Incorrect: You have selected the wrong item. Try again or selct the Information icon for instructions.", "alert-danger", "fa fa-warning" );
+    } );
+    $("a[id*='msgFail']").on( "click", function() {
+      showAlert( "Incorrect: You have selected the wrong item. Try again or selct the Information icon for instructions.", "alert-danger", "fa fa-warning" );
+    } );
+    $('#msgPass').on( "click", function() {
+      showAlert( "Correct: You performed the correct action. Select the <strong>Next -></strong> button to continue.", "alert-success", "far fa-check-circle" );
+    } );
+});
+
+
+function showAlert( message, alerttype, icontype ) {
+    $('#alert_placeholder').append( $('#alert_placeholder').append(
+      '<div id="alertdiv" role="alert" class="alert alert-dismissible fade show ' +  alerttype + '" >' +
+          '<i class="'+ icontype +'"></i>&nbsp;&nbsp;' +
+          '<a class="close" data-dismiss="alert" aria-label="close" >x</a>' +
+          '<span>' + message + '</span>' + 
+      '</div>' )
+    );
+
+    // close it in 6 secs, better to be longer and allow users to close it than to be too quick
+    setTimeout( function() {
+        $("#alertdiv").remove();
+    }, 7000 );
+}
+
+function showButtons() {
+  var x = document.getElementById("buttons");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+} 
+
+function showHighlight() {
+  var element = document.getElementById("mark");
+  var highlightFeedback = document.getElementById("msgMark");
+  element.classList.toggle("highlight");
+
+  if (highlightFeedback.style.display === "none") {
+    highlightFeedback.style.display = "block";
+  } else {
+    highlightFeedback.style.display = "none";
+  }
+
+} 
+

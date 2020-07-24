@@ -203,6 +203,12 @@ img {
 iframe#ifrm {
   border:1px solid #ccc;
   width:100%;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
 }
 #alertdiv {
   margin-top: 10px !important;
@@ -280,7 +286,6 @@ input[type=submit] {
 /* Style the container */
 .container {
   border-radius: 5px;
-  background-color: #f2f2f2;
   padding: 20px;
 }
 .custom-control {
@@ -300,4 +305,10 @@ form {
 #Main_Content {
   background:#fff;
   padding:10px;
+}
+.instructions {
+  font-size: 120%;
+  color: #000;
+  background: #ffffcc;
+  padding: 20px
 }
