@@ -724,6 +724,16 @@ function showAlert( message, alerttype, icontype ) {
     }, 7000 );
 }
 
+
+function closeMsg() {
+    $('#alertdiv');
+    // close it in 6 secs, better to be longer and allow users to close it than to be too quick
+    setTimeout( function() {
+        $("#alertdiv").remove();
+    }, 7000 );
+}
+
+
 function showButtons() {
   var x = document.getElementById("buttons");
   if (x.style.display === "none") {
