@@ -312,3 +312,15 @@ form {
   background: #ffffcc;
   padding: 20px
 }
+#msgFail_2 img {
+  float:right;
+  width:250px;
+  margin-top: -50px;
+}
+.textbox {
+  border:solid 2px #000;
+  padding: 10px
+}
+.bump {
+  padding-left: 20px;
+}
