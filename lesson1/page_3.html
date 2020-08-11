@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>SpeedGrader</title>
+    <title>Rubric</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -28,11 +28,15 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-    <script src="../shared/scormfunctions.js" type="text/javascript"></script>
+    <script src="../shared/scripts/dmceFunctions.js" type="text/javascript"></script>
 
 </head>
 <body>
-<div id="alert_placeholder" class="container"></div>
+      <div class="instructions">
+        <h3>Instructions:</h3>
+        	<ul><li>Select the <strong>'View Rubric'</strong> button</li></ul>
+      </div>
+
 <div class="container-fluid">
     <div class="row" style="background-color: #003366; color:#fff" id="msgFail_1">
         <div class="col-2" style="border-right: dashed #ccc 1px"><img src="img/icn-gradebook.png" width="40" height="40" class="icnh" alt="icon"><img src="img/icn-eye.png" width="40" height="40" class="icnh" alt="icon"><img src="img/icn-gear.png" width="40" height="40" class="icnh" alt="icon"></div>
@@ -91,7 +95,6 @@
             <a href="#">Download Submission Comments</a>
       </div>
     </div>
-    <div class="fab" id="msg4"><a href="#alert_placeholder"><i class="fas fa-info-circle"></i></a></div>
 </div>
 
 <script type="text/javascript">

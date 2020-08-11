@@ -675,9 +675,6 @@ function quit(){
 // Alert Type: alert-success, alert-info, alert-warning, alert-danger
 // https://www.w3schools.com/bootstrap/bootstrap_alerts.asp
 $(document).ready(function() {
-    $('#msg4').on( "click", function() {
-      showAlert( "<ul><li>Select the <strong>'View Rubric'</strong> button</li></ul>", "alert-info", "fas fa-info-circle" );
-    } );
     $('#msg5').on( "click", function() {
       showAlert( "<ul><li>Under the Ratings column, choose <strong>'Full Marks'</strong> for each of the three grading criteria.</li><li><strong>Note:</strong> do not enter a point value</li><li>Select <strong>'Save'</strong></li></ul>", "alert-info", "fas fa-info-circle" );
     } );
