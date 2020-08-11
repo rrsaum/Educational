@@ -675,9 +675,6 @@ function quit(){
 // Alert Type: alert-success, alert-info, alert-warning, alert-danger
 // https://www.w3schools.com/bootstrap/bootstrap_alerts.asp
 $(document).ready(function() {
-    $('#msg5').on( "click", function() {
-      showAlert( "<ul><li>Under the Ratings column, choose <strong>'Full Marks'</strong> for each of the three grading criteria.</li><li><strong>Note:</strong> do not enter a point value</li><li>Select <strong>'Save'</strong></li></ul>", "alert-info", "fas fa-info-circle" );
-    } );
     $('#msgFail').on( "click", function() {
       showAlert( "Incorrect: You have selected the wrong item. Try again or selct the Information icon for instructions.", "alert-danger", "fa fa-warning" );
     } );
