@@ -750,3 +750,76 @@ function showHighlight() {
 
 } 
 
+
+/* had to rework this a variety of ways. jQuery seemed to fail.
+See: https://codehandbook.org/es6-javascript-remove-duplicates-from-an-array/
+https://wsvincent.com/javascript-remove-duplicates-array/
+*/
+
+var getAllSteps = localStorage.getItem("steps").split(',');
+
+//let james = getAllSteps.split(',');
+let uniqueSteps = removeDuplicates(getAllSteps);
+
+
+let sendname = localStorage.getItem('name')+" | ";
+let RubricTotalpass = Number(localStorage.getItem('RubricTotalls'));
+let stepsCompleted = "steps: "+uniqueSteps+" |";
+
+    function SubmitAnswers(){
+        var correctCount = 0;
+        var totalQuestions = test.Questions.length;
+        
+        var resultsSummary = "";
+        
+        for (var i in test.Questions){
+            var question = test.Questions[i];
+            
+            var wasCorrect = false;
+            var correctAnswer = null;
+            var learnerResponse = "";
+            learnerResponse = document.getElementById("question_com.scorm.q_1_Text").value;
+            
+            correctAnswer = question.CorrectAnswer;
+            learnerResponse = document.getElementById("question_" + question.Id + "_Text").value;
+            
+            wasCorrect = (correctAnswer == learnerResponse);
+            if (wasCorrect) {correctCount++;}
+            
+            if (parent.RecordQuestion){
+                parent.RecordQuestion(test.Questions[i].Id, 
+                                        test.Questions[i].Text,  
+                                        learnerResponse, 
+                                        correctAnswer, 
+                                        wasCorrect);
+            }
+            
+            resultsSummary += "<div><strong>Rubric Items & Message</strong>:&nbsp;";
+            resultsSummary += "Your answer: <br>" + learnerResponse + "<br>";
+            resultsSummary += "</div>";
+        }
+
+        Email.send({
+        Host : "smtp.elasticemail.com",
+        Username : "rctle@erau.edu",
+        Password : "EC53810932138E1CB8A929A52FE1114897B9",
+        To : "rctle.erau@gmail.com",
+        From : "rctle@erau.edu",
+        Subject :sendname+stepsCompleted+learnerResponse,
+        Body : "SpeedGrader Message"
+        });
+
+
+        var score = RubricTotalpass;    
+        resultsSummary = "<br><h2>Score: " + score + "</h2>" + resultsSummary + "<br><br><p><br>&nbsp;&nbsp;Select the 'Next' button to continue.</p><br><br><br><br>";
+        document.getElementById('test').innerHTML = resultsSummary;
+        document.getElementById('message').innerHTML = '';
+        document.getElementById('message').setAttribute('class','hide');
+        document.getElementById('test').setAttribute('class','message-score');
+        document.getElementById('0pts3').setAttribute('class','hide');
+        document.getElementById('40pts3').setAttribute('class','hide');
+        
+        if (parent.RecordTest){
+            parent.RecordTest(score);
+        }
+    }
