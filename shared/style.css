@@ -181,25 +181,12 @@ a:hover.highlight, a:visited.highlight, a:link.highlight, a:active.highlight{
   cursor: pointertext-decoration: none !important;
   color: #000;
 }
-span.highlight {
-  background-color: yellow;
-  cursor: pointer;
-}
-#mark {
-  cursor: pointer;
-}
-img {
-  width: 100%;
-  height: auto;
-}
-.col-8 {
-  margin:0;
-  padding:0
-}
-.col-4 {
-  margin:0;
-  padding:0
-}
+span.highlight {background-color: yellow; cursor: pointer;}
+#mark {cursor: pointer;}
+img {width: 100%; height: auto;}
+.col-8 {margin:0; padding:0}
+.col-4 {margin:0; padding:0}
+
 iframe#ifrm {
   position: absolute;
   border:1px solid #ccc;
@@ -331,3 +318,23 @@ form {
     overflow: hidden;
     padding-top: 56.25%; /* 16:9*/
 }
+.fas {font-size: 150%;}
+.button {border: none; border-radius: 50%; padding: 5px; text-align: center; text-decoration: none; display: inline-block;  font-size: 10px; margin: 4px 2px; cursor: pointer;}
+.button1 {background-color: red;}
+.button2 {background-color: orange;}
+.button3 {background-color: yellow;}
+.button4 {background-color: green;}
+.button5 {background-color: blue;}
+.button6 {background-color: #ff00ff;}
+.button_rubric {border: #ccc 1px solid;border-radius: 5%; padding: 5px;text-align: center;text-decoration: none;display: inline-block;margin: 4px 2px;cursor: pointer;background-color: #eee;color: #000}
+img.icnr{height:20px;width:20px;margin-top:20px}
+input[type=text]{width:50px;padding:10px;margin:5px;display:inline-block;border:1px solid #ccc;background:#fafafa}
+input[type=text]:focus{background-color:#ddd;outline:0}
+.btnRubric{width:100%;height:100%;background-color:#fff;color:#000;border:none;font-weight:700;display:block;vertical-align:text-top!important}
+.btnRubric:hover{margin:0;padding:0;margin-left:-15px;margin-right:40px;width:130%;height:100%;color:#000;border:none;font-weight:700;display:block;vertical-align:text-top!important;background-color:#a9f5bc}
+.btnRubricSelectedPts{margin:0;padding:0;margin-left:-15px;margin-right:40px;width:130%;height:100%;color:#000;border:none;font-weight:700;display:block;vertical-align:text-top!important;background-color:#a9f5bc;background:url(img/bckg-selected-green.png) bottom center no-repeat}
+.btnRubricSelectedNoPts{margin:0;padding:0;margin-left:-15px;margin-right:40px;width:130%;height:100%;color:#000;border:none;font-weight:700;display:block;vertical-align:text-top!important;background-color:red;background:url(img/bckg-selected-red.png) bottom center no-repeat}
+.message{background-color:#f6ced8;padding:10px;border:3px solid red;font-weight:700}
+.message-yes{background-color:#a9f5a9;padding:10px;border:3px solid #04b45f;font-weight:700}
+.message-score{background-color:#a9f5a9;padding:10px;border:3px solid #04b45f;font-weight:700}
+.hide{display:none}      

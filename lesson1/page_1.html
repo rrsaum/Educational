@@ -7,7 +7,6 @@
 
     <style type="text/css" media="screen">
       @import url( ../shared/style.css );
-      img {width: 100%; height: auto;}
     </style>
 
     <!-- Bootstrap CSS -->
@@ -20,13 +19,17 @@
     <script src="../shared/scripts/dmceFunctions.js" type="text/javascript"></script>
 
   </head>
-	<body>
+<body onload="javascript:Initialize();" onunload="javascript:onUnexpectedExit ( '01' );">
 <div class="container-fluid">
   <div class="row" id="msgFail_1">
     <div class="MastHead">
       <div class="instructions">
         <h3>Instructions:</h3>
-        <p>This activity is a simulation of the SpeedGrader tool. You will perform a series of actions to demonstrate proficiency with the SpeedGrader tool. Select the &nbsp;&nbsp;<strong><img src='img/icn-speedgrader.png' width='50' height='50' class='icn' alt='icon'>SpeedGrader<sup>TM</sup></strong> link to access the tool and begin the activity.</p>
+        <p>This activity is a simulation of the SpeedGrader tool. You will perform a series of actions to demonstrate proficiency with the SpeedGrader tool.</p>
+          <ul>
+            <li>Select the &nbsp;&nbsp;<strong><img src='img/icn-speedgrader.png' width='50' height='50' class='icn' alt='icon'>SpeedGrader<sup>TM</sup></strong> link to access the tool and begin the activity.</li>
+          </ul>
+
         <div id="alert_placeholder" class="container"></div>
       </div>
       <h3 class="AssignHead"> > <a href="#">Assignments</a>  >  <span style="color:#000">Research Paper</span></h3>

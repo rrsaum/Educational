@@ -259,159 +259,6 @@ var answerResult = "";
 
 /*******************************************************************************
 **
-** This function validates any forms with radio button (i.e. true/false, multiple choice).
-** It checks to see if the user selected an answer and prompts otherwies.  Then it checks to see
-** if the answer selected is the correct answer and sets the appropriate variables.
-** Finally it calls displayFeedback and outputs the result to the user.
-**
-**
-** Inputs: 	formObj - string - the name of the form
-**			correctAnswer - string - the corret answer to the question
-**			feedback - string - the text to be displayed on screen
-**			index -
-**			next - the url of the nextPage
-**
-** Return: IsOK - Boolean, states whether an answer was selected true=yes, false=no
-**
-*******************************************************************************/
-function radio_validate(formObj, correctAnswer, index, dme)
-{
-	//initalize variables used in the function
-	var isOK = false;
-	var answer = "";
-    var result = incorrect;
-
-	//finds each radio button and if it checked sets the answer as that element
-	for ( i = 0; i < ( formObj.elements.length - 2 ); i++ )
-	{
-		currElem = formObj.elements[i];
-        if ( currElem.type == "radio" && currElem.checked )
-		{
-			isOK = true;
-			answer = currElem.value;
-			break;
-       }
-    }
-
-   if ( !isOK )
-	{
-		alert( "Please select an answer." );
-	}
-	else
-	{
-		// store the answer
-		storeDataValue("cmi.interactions."+index+".learner_response", answer);
-
-		//check to see if user's answer is correct
-		if( answer == correctAnswer )
-		{
-			result = correct;
-
-			// store the result, since we only are storing that they got this question correct
-			storeDataValue("cmi.interactions."+index+".result", "correct");
-		}
-		else
-		{
-			// store the result as incorrect
-			storeDataValue("cmi.interactions."+index+".result", "incorrect");
-		}
-
-		//refer to function definition below
-		//displayFeedback(result, feedback);
-	}
-
-	feedbackPage = dme+'_cca_question_fb.html';
-	GoToPage( feedbackPage );
-    //return isOK;
-}
-
-function checkbox_validate(formName, index, dme, InteractionObject)
-{
-	numRight = 0;
-	numWrong = 0;
-
-	var learnerResponse = "";
-	var totalOptions = formName.elements.length - 2
-	var i;
-	var numChecked = 0;
-
-	//loop to see how many are checked
-	for ( i = 0; i < totalOptions; i++ )
-	{
-		currElem = formName.elements[i];
-        	if ( currElem.type == "checkbox" && currElem.checked )
-		{
-			numChecked++;
-       		}
-    	}
-
-	//loop to create the learner's response
-	if(numChecked > 0)
-	{
-		var numAdded = 0;
-		for ( i = 0; i < totalOptions; i++ )
-		{
-			currElem = formName.elements[i];
-
-			if ( currElem.type == "checkbox" && currElem.checked )
-			{
-				learnerResponse += formName.elements[i].value;
-				numAdded++;
-				if (numAdded < numChecked)
-				{
-					learnerResponse += "[,]";
-
-				}
-		   }
-		}
-
-		// Set the Interaction ID
-		storeDataValue("cmi.interactions."+index+".id", InteractionObject.id);
-
-		// Set the Interaction type for this "interaction"
-		storeDataValue("cmi.interactions."+index+".type", InteractionObject.type);
-
-		// set the Interaction's correct response to "correctAnswer"
-		storeDataValue("cmi.interactions."+index+".correct_responses.0.pattern", InteractionObject.correctAnswer);
-
-		// to describe this Interaction, we'r using the actual test question
-		storeDataValue("cmi.interactions."+index+".description", InteractionObject.description );
-
-		// since we are demonstrating Score in this example, we are weighting questions differently
-		// The weight will be used to calculate the scaled score on the results page.
-		storeDataValue("cmi.interactions."+index+".weighting", InteractionObject.weighting );
-
-		// store the answer
-		storeDataValue("cmi.interactions."+index+".learner_response", learnerResponse );
-
-		//check to see if the answers are correct.
-		correctPattern = retrieveDataValue( "cmi.interactions."+index+".correct_responses.0.pattern" );
-
-		//check to see if they selected all of the right answers
-		if( learnerResponse ==  correctPattern )
-		{
-			// store the result, since we only are storing that they got this question correct
-			storeDataValue("cmi.interactions."+index+".result", "correct");
-		}
-		else
-		{
-			// store the result, since we only are storing that they got this question correct
-			storeDataValue("cmi.interactions."+index+".result", "incorrect");
-		}
-
-		//go to the feedback page
-		feedbackPage = dme+'_cca_question_fb.html';
-		GoToPage( feedbackPage );
-	}
-	else
-	{
-		alert ( "Please select an answer." );
-	}
-}//end function
-
-
-/*******************************************************************************
-**
 ** This function validates any forms that need to check a text input box.  It checks to
 ** see if the user entered any text and then checks if the user's answer is correct.
 ** It then calls displayFeedback() and outputs the result to the user.
@@ -426,7 +273,7 @@ function checkbox_validate(formName, index, dme, InteractionObject)
 **
 *******************************************************************************/
 
-function text_validate(formName, answerOptions, index, dme, InteractionObject)
+function text_validate(formName, index, dme, InteractionObject)
 {
 	var result = incorrect;
 	var answer = formName.answer.value;
@@ -444,44 +291,16 @@ function text_validate(formName, answerOptions, index, dme, InteractionObject)
 		// Set the Interaction type for this "interaction"
 		storeDataValue("cmi.interactions."+index+".type", InteractionObject.type);
 
-		// set the Interaction's correct response to "correctAnswer"
-		var t = InteractionObject.correctAnswer.length;
-
-		for ( var i = 0; i < t; i++ )
-		{
-			storeDataValue("cmi.interactions."+index+".correct_responses." + i + ".pattern", InteractionObject.correctAnswer[i] );
-		}
 		// to describe this Interaction, we'r using the actual test question
 		storeDataValue("cmi.interactions."+index+".description", InteractionObject.description );
-
-		// since we are demonstrating Score in this example, we are weighting questions differently
-		// The weight will be used to calculate the scaled score on the results page.
-		storeDataValue("cmi.interactions."+index+".weighting", InteractionObject.weighting );
 
 		// store the answer
 		storeDataValue("cmi.interactions."+index+".learner_response", answer);
 
-		answer = Trim( answer.toLowerCase() );
-
-		//loop through the possible
-		for( i=0; i < answerOptions.length; i++ )
-		{
-			if( answer == answerOptions[i] )
-			{
-				result = correct;
-				// store the result, since we only are storing that they got this question correct
-				storeDataValue( "cmi.interactions."+index+".result", "correct" );
-				break;
-			}
-		}
-		if( result == incorrect )
-		{
-			// store the result, since we only are storing that they got this question correct
-			storeDataValue( "cmi.interactions."+index+".result", "incorrect" );
-		}
+		storeDataValue( "cmi.interactions."+index+".result", "correct" );
 
 		//go to the feedback page
-		feedbackPage = dme+'_cca_question_fb.html';
+		feedbackPage = 'page_7.html';
 		GoToPage( feedbackPage );
 	}
 }//end function
@@ -756,15 +575,8 @@ See: https://codehandbook.org/es6-javascript-remove-duplicates-from-an-array/
 https://wsvincent.com/javascript-remove-duplicates-array/
 */
 
-var getAllSteps = localStorage.getItem("steps").split(',');
-
-//let james = getAllSteps.split(',');
-let uniqueSteps = removeDuplicates(getAllSteps);
-
-
 let sendname = localStorage.getItem('name')+" | ";
 let RubricTotalpass = Number(localStorage.getItem('RubricTotalls'));
-let stepsCompleted = "steps: "+uniqueSteps+" |";
 
     function SubmitAnswers(){
         var correctCount = 0;
@@ -798,16 +610,6 @@ let stepsCompleted = "steps: "+uniqueSteps+" |";
             resultsSummary += "Your answer: <br>" + learnerResponse + "<br>";
             resultsSummary += "</div>";
         }
-
-        Email.send({
-        Host : "smtp.elasticemail.com",
-        Username : "rctle@erau.edu",
-        Password : "EC53810932138E1CB8A929A52FE1114897B9",
-        To : "rctle.erau@gmail.com",
-        From : "rctle@erau.edu",
-        Subject :sendname+stepsCompleted+learnerResponse,
-        Body : "SpeedGrader Message"
-        });
 
 
         var score = RubricTotalpass;    
