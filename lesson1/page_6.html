@@ -11,85 +11,39 @@
 	
 	<!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/3e56e0b7a1.js" crossorigin="anonymous"></script>  
-	
 	<script type="text/javascript" src="../Shared Files/scripts/dmceFunctions.js"></script>
 	<script type="text/javascript" src="../Shared Files/scripts/APIWrapper.js"></script>
-
-
-	<script type="text/javascript">
-		// call to the LMS to get the last interaction index
-		questionIndex = retrieveDataValue( "cmi.interactions._count" ) - 1;
-		
-		//get the id of the question that was answered to display the appropriate feedback
-		questionID = retrieveDataValue( "cmi.interactions."+questionIndex+".id" );
-		
-		//get the result that was stored based on the learner's answer 
-		questionResult = retrieveDataValue( "cmi.interactions."+questionIndex+".result" );
-		
-		// initialize variables to set and use for feedback
-		var courseStatus = "completed";
-		var feedback = "";
-		var corFeedback = "";
-		var incorFeedback = "";
-		var name = retrieveDataValue ( "cmi.learner_name" );
-		var split_name = name.split(",");
-		var get_uid =  retrieveDataValue ( "cmi.learner_id" );
-		var uid = get_uid.split(".");
-		var user_response = retrieveDataValue( "cmi.interactions."+questionIndex+".weighting" );
-		
-		
-		
-		// variable used to set the URL for the next question
-		var nextPageURL = "";
-		
-		// varibale used to set the onUnexpectedExit page number
-		var exit = "";
-		
-		//depending on which question was just answered and passed to the page set and store the appropriate
-		//variables
-		switch ( questionID ){
-			case "interaction_001":
-				corFeedback = "Thank you for your feedback!";
-				incorFeedback = "Thank you for your feedback!";
-				nextPageURL = "page_7.html";
-				exit = "01";
-				break;
-			default:
-				corFeedback = "Error.";
-				incorFeedback = "Error.";
-				nextPageURL = "";
-				break;
-		}
-		
-				
-		var result = "";
-		if( questionResult == "correct" )
-		{
-			result = "<span style='color:#0099FF;'></span>";
-			feedback = corFeedback;
-		}
-		else
-		{
-			result = "<span style='color:#0099FF;'></span>";
-			feedback = incorFeedback;
-		}
-	</script>
 </head>
 
-<body>
+<body onunload="javascript:Terminate();">
 	<div class="container">
 		<h1>Thank You!</h1>
 		<div id="Main_Content">
 			<p><br>
-				<script type="text/javascript">
-					document.writeln( "This is a test" );
-					document.writeln( split_name['1']+", We appreciate your feedback." );
-				</script> </p>
-			<p>&nbsp;</p>
-			<p>Go to the <a href="page_7.html">Next page</a> to conlcude this exercise.</p>
+			</p>
+			<p>This concludes the SpeedGrader simulation. You may close this window to return to iTeachER.</p>
+				<script language="javascript">
+				<!--
+					var name = retrieveDataValue ( "cmi.learner_name" );
+					var uid =  retrieveDataValue ( "cmi.learner_id" );
+					
+					var comments = '';
+					comments.push( "<p>&lt; Username &gt; " + name + "<br /> &lt; ID &gt; " + uid + "<br />&lt; Feedback &gt;" + feedback + "<br />&lt; Timestamp &gt;" + time + "</p>");
+					
+					// insert results of comments typed, or example of what would appear
+						document.write( comments );
+				-->
+				</script>  
+				<form id="navigation" action="">
+					<div id="returnToLms" class="enabledTopMenuItem" title="RETURN TO LMS">
+					<input id="nextBtn" type="button" onclick="GetControlWindow().Control.TriggerReturnToLMS();" onmouseover="window.status='RETURN TO LMS';return true;" onmouseout="window.status='';return true;" value="Done &gt;&gt; " alt="Return to LMS" />
+				</div>
+
+			</form>
+
+
 		</div>
 	</div>
-	
 </body>
 </html>
 
