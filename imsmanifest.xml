@@ -179,6 +179,9 @@
       <file href="shared/scripts/APIWrapper.js" />
       <file href="shared/scripts/dmceFunctions.js" />
     </resource>
+    <resource identifier="RES-DD3699BA4EE91CB1EB4D8F608A157445" adlcp:scormType="asset" type="webcontent" href="lesson1/page_6.html">
+      <file href="lesson1/page_6.html" />
+    </resource>
   </resources>
 </manifest>
 

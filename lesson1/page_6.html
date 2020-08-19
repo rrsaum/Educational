@@ -1,49 +1,45 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-	<title>SpeedGrader Progress</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="../Shared Files/css/style.css" type="text/css" />
-	
-	<!-- FontAwesome -->
-    <script src="https://kit.fontawesome.com/3e56e0b7a1.js" crossorigin="anonymous"></script>  
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>SCORM Data Model Example</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />	
+	<link rel="stylesheet" href="../Shared Files/css/style.css" type="text/css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">  
 	<script type="text/javascript" src="../Shared Files/scripts/dmceFunctions.js"></script>
 	<script type="text/javascript" src="../Shared Files/scripts/APIWrapper.js"></script>
+	<script type="text/javascript" src="../Shared Files/scripts/fin.js"></script>
+	<script type="text/javascript">
+	    var courseStatus = "completed";
+		var exit = "6";
+	</script>
 </head>
 
-<body onunload="javascript:Terminate();">
-	<div class="container">
-		<h1>Thank You!</h1>
-		<div id="Main_Content">
-			<p><br>
-			</p>
-			<p>This concludes the SpeedGrader simulation. You may close this window to return to iTeachER.</p>
+<body onload="javascript:EndIt();" onunload="javascript:Terminate();">
+	<div id="wrapper">
+		<!-- Main page content -->
+		<div class="container-fluid bg-1 text-center">
+			<br>
+			<div class="card">
+			  <div class="card-header">
+			    <h1>Congratulations</h1>
+			  </div>
+			  <div class="card-body">
+			    <h5 class="card-title">You have completed this activity.</h5>
+			    <p class="card-text"> Close the window to exit and return to iTeachER.</p>
+			  </div>
+			</div>
+			<div id="content">
+				<p></p>
 				<script language="javascript">
-				<!--
-					var name = retrieveDataValue ( "cmi.learner_name" );
-					var uid =  retrieveDataValue ( "cmi.learner_id" );
-					
 					var comments = '';
 					comments.push( "<p>&lt; Username &gt; " + name + "<br /> &lt; ID &gt; " + uid + "<br />&lt; Feedback &gt;" + feedback + "<br />&lt; Timestamp &gt;" + time + "</p>");
-					
-					// insert results of comments typed, or example of what would appear
-						document.write( comments );
-				-->
+					document.write( comments );
 				</script>  
-				<form id="navigation" action="">
-					<div id="returnToLms" class="enabledTopMenuItem" title="RETURN TO LMS">
-					<input id="nextBtn" type="button" onclick="GetControlWindow().Control.TriggerReturnToLMS();" onmouseover="window.status='RETURN TO LMS';return true;" onmouseout="window.status='';return true;" value="Done &gt;&gt; " alt="Return to LMS" />
-				</div>
-
-			</form>
-
-
+		  	</div>		
 		</div>
-	</div>
+	</div> 
+	<!-- end main page style -->
 </body>
 </html>
-

@@ -44,7 +44,7 @@
       storeDataValue("cmi.interactions."+index+".learner_response", formName.answer.value); //student_response
     
       // the student_response field appears to be unsupported in Canvas, using the weighting field in place of it.
-      storeDataValue("cmi.interactions."+index+".weighting", formName.answer.value);
+      //storeDataValue("cmi.interactions."+index+".weighting", "1");
     
       // to describe this Interaction, we'r using the actual test question
       storeDataValue("cmi.interactions."+index+".description", "{lang=en-US}Comments");
@@ -73,10 +73,10 @@
         $form.innerHTML += '<input type="text" class="hide" name="course" value="SpeedGrader">';
         $form.innerHTML += '<input type="text" class="hide" name="course_rating" value="'+user_response+'">';
         document.body.append($form);
+
         $form.submit();
-        storeDataValue("cmi.success_status", "passed");
         setTimeout("location.href = 'page_6.html';",200);
-        
+        storeDataValue("cmi.exit","suspend");
       }
       else
       {
