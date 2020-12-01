@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<Upload>
+	<item> 
+		<Action><![CDATA[1.  Select the <b><i>Upload</i></b> link ]]></Action>
+
+	</item>	
+	<item> 
+		<Action>2.  Browse for the file you wish to upload</Action>
+	</item>	
+	<item>	
+		<Action><![CDATA[3. Select the <b><i>Upload button</i></b>]]></Action>
+	</item>		
+</Upload>
+
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<rss version="2.0">
+	<channel>
+		<title>Desire2Learn Instructor Orientation</title><br />
+			<item>
+				<info>1. Select the files you wish to create topics from</info>
+				<info><![CDATA[2. Select the <b><i>Create Topics</i></b> link]]></info>
+				<info>3.  Select the Parent Mode for the topic(s)</info>
+				<info>4.  If desired change the title for the topic(s)</info>
+				<info><![CDATA[Select the <b><i>Save</b></i> button]]></info>
+			</item>
+	</channel>
+</rss>
+
