@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Point Annotator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <style type="text/css" media="screen">
+      @import url( ../shared/style.css );
+    </style>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">  
+
+    <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/3e56e0b7a1.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="../shared/scripts/dmceFunctions.js" type="text/javascript"></script>
+
+</head>
+<body onload="closeMsg(); javascript:Initialize();" onunload="javascript:onUnexpectedExit ( '02' );">
+      <div class="instructions">
+        <div id="alertdiv" role="alert" class="alert alert-dismissible fade show alert-success" >
+          <i class="far fa-check-circle"></i>&nbsp;&nbsp;
+          <a class="close" data-dismiss="alert" aria-label="close" >x</a>
+          <span>Correct: <br>The SpeedGrader provides for quality feedback by using the DocViewer MarkUps, interaction rubrics, and assignment comments.</span>
+        </div>
+
+        <h3>Instructions:</h3>
+        <ul><li>Select the Point Annotator&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='img/icn-point-annotator.png' width='30' height='30' class='icn' alt='icon' style='background-color:#ccc'></li>
+          <li>Choose <span style="color:blue">Blue</span> from the color palette</li>
+          <li>Navigate to page 2 of the document</li>
+          <li>Select the highlighted sentence</li>
+          <li>Select the Point Annotator message box</li></ul>
+        <div id="alert_placeholder" class="container"></div>
+
+      </div>
+
+<div class="container-fluid">
+    <div class="row" style="background-color: #003366; color:#fff"  id="msgFail_1">
+        <div class="col-2" style="border-right: dashed #ccc 1px"><img src="img/icn-gradebook.png" width="40" height="40" class="icnh" alt="icon"><img src="img/icn-eye.png" width="40" height="40" class="icnh" alt="icon"><img src="img/icn-gear.png" width="40" height="40" class="icnh" alt="icon"></div>
+        <div class="col-5"><h4>Research Paper</h4><p style="line-height:40%">Due: January 10, 2020</p></div>
+        <div class="col-2" style="border-right: dashed #ccc 1px"><p style="text-align:center">0/1<br>Graded<p></div>
+        <div class="col-3"> &larr; &nbsp;&nbsp;&nbsp;<img src="img/caleb.png" width="40" height="40" alt="Photograph of Caleb Flight" style="height:40px; width:40px"> Caleb Flight &nbsp;&nbsp;&nbsp; &rarr;</div>
+      </div>
+    <div class="row">
+      <div class="col-9" style="border-right:#666 solid 1px">
+        <ul class="sg-actions">
+          <li id="msgFail_2"><img src="img/icn-download-white.png" width="40" height="40" class="icnh last" alt="icon"></li>
+          <li class="last">Page &nbsp; <a target="ifrm" alt="Back" title="Back" href="pages3.html#" id="urlREV" onclick="setIframeSrc('ifrm', this.href); return false" class="pages">&larr;</a> 
+          <!-- DO NOT REMOVE, REQUIRED for navigating forward and backward -->
+          &nbsp;&nbsp;&nbsp;&nbsp;<span id="displayCount" class="counter">0</span>
+            <img src="img/icn-input.png" width="50" height="50" class="icnh" alt="icon"><a target="ifrm" alt="Forward" title="Forward" href="pages3.html#" id="urlFWD" class="pages">&rarr;</a>&nbsp;&nbsp;of 12&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li class="last" id="msgFail_3">&nbsp;&nbsp;<img src="img/icn-reload.png" width="50" height="50" class="icnh" alt="icon"></li>
+          <li class="bigger last" id="msgFail_4">&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;Zoom&nbsp;&nbsp;+&nbsp;&nbsp;</li>
+          <li class="last" id="msgFail_5">&nbsp;&nbsp;<img src="img/icn-resize.png" width="50" height="50" class="icnh" alt="icon"></li>
+          <li>&nbsp;
+            <img src="img/icn-pointer.png" width="50" height="50" class="icnh" alt="icon" id="msgFail_6">
+            <a alt="Point Annotator" title="Point Annotator" href="#" onclick="showButtons();setStep('5')" id="step5">
+            <img src="img/icn-point-annotator.png" width="50" height="50" class="icnh" alt="icon"></a>
+            <img src="img/icn-highlight.png" width="50" height="50" class="icnh" alt="icon" id="msgFail_7"></a>
+            <img src="img/icn-text.png" width="50" height="50" class="icnh" alt="icon" id="msgFail_8">
+            <img src="img/icn-strikeout.png" width="50" height="50" class="icnh" alt="icon" id="msgFail_9">
+            <img src="img/icn-brush.png" width="50" height="50" class="icnh" alt="icon" id="msgFail_10">
+            <img src="img/icn-box.png" width="50" height="50" class="icnh" alt="icon" id="msgFail_11">
+          </li>
+        </ul>
+
+        <!-- Insert Buttons Here -->
+          <div id="buttons" style="display:none; background-color:#fff;">
+            <button class="button button1" id="msgFail_12">&nbsp;&nbsp;&nbsp;</button> 
+            <button class="button button2" id="msgFail_13">&nbsp;&nbsp;&nbsp;</button>
+            <button class="button button3" id="msgFail_14">&nbsp;&nbsp;&nbsp;</button> 
+            <button class="button button4" id="msgFail_15">&nbsp;&nbsp;&nbsp;</button>
+            <a class="button button5" id="step6" target="ifrm" href="pages3.html" onclick="setStep('6');setIframeSrc('ifrm', this.href); return false" id="btnClr">&nbsp;&nbsp;&nbsp;</a>
+            <button class="button button6" id="msgFail_16">&nbsp;&nbsp;&nbsp;</button>
+          </div> 
+                
+        <!-- Insert Pages Here -->
+        <div class="resp-container">
+          <iframe src="pages2.html" name="ifrm" id="ifrm" width="100%"  border="0" frameborder="0" allowTransparency="true" allowfullscreen></iframe>
+        </div>
+      <!-- Sidebar -->
+      </div>
+      <div class="col-3" id="msgFail_17"><br><br><p style="line-height:2em"><strong>Submitted:</strong> January 4, 2020<br><strong>Submitted Files:</strong> (click to load)<br>
+        <a href="#">Caleb Flight Research Paper.docx</a></p>
+        <p>&nbsp;</p>
+        <p><strong>Assessment</strong><br>Grade out of 100<br><textarea></textarea><br>
+          <button>View Rubric</button>
+          <br><br>
+        </p>
+        <p><strong>Assignment Comments</strong><br>
+          <img src="img/caleb.png" width="40" height="40" alt="Photograph of Caleb Flight" style="float: left;height:40px; width:40px">Hi Professor, here is my paper on learning and simulation.
+          <br><br>
+          <span style="align:right; font-size:80%"><strong>Caleb Flight</strong>, January 4, 2020 at 10:36 PM<br></span>
+            <textarea rows="4" cols="30">Add A Comment</textarea>
+            <br>
+            <img src="img/icn-attach-file.png" width="40" height="40" class="icnh" alt="icon">
+            <img src="img/icn-video-comment.png" width="40" height="40" class="icnh" alt="icon">
+            <img src="img/btn-submit.png" width="80" height="40" alt="icon" style="width:80px; height:40px">
+            <br>
+            <a href="#">Download Submission Comments</a>
+          </p>
+      </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+      var url= 'pages3.html#'
+      var count = 0;
+      //This increases/decrease the URL when hotspot is clicked
+      var buttonFWD = document.getElementById("urlFWD");
+      var buttonREV = document.getElementById("urlREV");    
+      var buttonBTN = document.getElementById("btn");    
+      var display = document.getElementById("displayCount");
+
+      buttonFWD.onclick = function(){
+        count++;
+        display.innerHTML = count;
+        // https://www.w3schools.com/jsref/met_element_setattribute.asp
+        document.getElementById("urlFWD").setAttribute("href", url+count);
+
+      }
+      buttonREV.onclick = function(){
+        count--;
+        display.innerHTML = count;
+        document.getElementById("urlREV").setAttribute("href", url+count);
+      }
+
+      buttonBTN.onclick = function(){
+        document.getElementById("btn").setAttribute("href", "buttons-pa.html");
+      }
+
+// 3 ways to load a document into an iframe using JavaScript 
+// from www.dyn-web.com/tutorials/iframes/load/
+function setIframeSrc(id, url) {
+    document.getElementById(id).src = url;
+}
+</script>
+</body>
+</html>

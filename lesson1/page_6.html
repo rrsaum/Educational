@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>SCORM Data Model Example</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />	
+	<link rel="stylesheet" href="../Shared Files/css/style.css" type="text/css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">  
+	<script type="text/javascript" src="../Shared Files/scripts/dmceFunctions.js"></script>
+	<script type="text/javascript" src="../Shared Files/scripts/APIWrapper.js"></script>
+	<script type="text/javascript" src="../Shared Files/scripts/fin.js"></script>
+	<script type="text/javascript">
+	    var courseStatus = "completed";
+		var exit = "6";
+	</script>
+</head>
+
+<body onload="javascript:EndIt();" onunload="javascript:Terminate();">
+	<div id="wrapper">
+		<!-- Main page content -->
+		<div class="container-fluid bg-1 text-center">
+			<br>
+			<div class="card">
+			  <div class="card-header">
+			    <h1>Congratulations</h1>
+			  </div>
+			  <div class="card-body">
+			    <h5 class="card-title">You have completed this activity.</h5>
+			    <p class="card-text"> Close the window to exit and return to iTeachER. Then select the <strong>Next</strong> button to continue.</p>
+			  </div>
+			</div>
+			<div id="content">
+				<p></p>
+				<script language="javascript">
+					var comments = '';
+					comments.push( "<p>&lt; Username &gt; " + name + "<br /> &lt; ID &gt; " + uid + "<br />&lt; Feedback &gt;" + feedback + "<br />&lt; Timestamp &gt;" + time + "</p>");
+					document.write( comments );
+				</script>  
+		  	</div>		
+		</div>
+	</div> 
+	<!-- end main page style -->
+</body>
+</html>

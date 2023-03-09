@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This is a Reload version 1.1 SCORM 2004 Content Package document-->
+<!--Spawned from the Reload Content Package Generator - http://www.reload.ac.uk-->
+<manifest xmlns="http://www.imsglobal.org/xsd/imscp_v1p1" xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_v1p3" xmlns:imsss="http://www.imsglobal.org/xsd/imsss" xmlns:adlseq="http://www.adlnet.org/xsd/adlseq_v1p3" xmlns:adlnav="http://www.adlnet.org/xsd/adlnav_v1p3" identifier="MANIFEST-39701457-7BE2-1369-28AD-2534864860BB" xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd http://ltsc.ieee.org/xsd/LOM lom.xsd http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd" version="1.3">
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>2004 3rd Edition</schemaversion>
+  </metadata>
+  <organizations default="ORG-FCC0FD46-6764-ADD4-6043-AD447E6CF9F5">
+    <organization identifier="ORG-FCC0FD46-6764-ADD4-6043-AD447E6CF9F5" structure="hierarchical">
+      <title>SpeedGrader Simulation</title>
+      <item identifier="ITEM-069793BB-B603-57C8-6D9E-6A268524580A" isvisible="true">
+        <title>Participant Feedback Survey</title>
+        <item identifier="ITEM-23D634D4-AFD8-C836-76C4-AC7D14D4F7B7" isvisible="true" identifierref="RES-892297C1-C271-AFB7-6F8B-3858FE70B9EF">
+          <title>SCORM Data Model Example</title>
+          <adlnav:presentation>
+            <adlnav:navigationInterface>
+              <adlnav:hideLMSUI>continue</adlnav:hideLMSUI>
+              <adlnav:hideLMSUI>previous</adlnav:hideLMSUI>
+            </adlnav:navigationInterface>
+          </adlnav:presentation>
+        </item>
+        <metadata>
+          <imsmd:lom xmlns:imsmd="http://ltsc.ieee.org/xsd/LOM">
+            <imsmd:general>
+              <imsmd:title>
+                <imsmd:string language="en">CidiLabs 101 Participant Feedback</imsmd:string>
+              </imsmd:title>
+              <imsmd:language>en</imsmd:language>
+            </imsmd:general>
+            <imsmd:lifeCycle>
+              <imsmd:version>
+                <imsmd:string language="en">1</imsmd:string>
+              </imsmd:version>
+            </imsmd:lifeCycle>
+            <imsmd:metaMetadata>
+              <imsmd:language>en</imsmd:language>
+            </imsmd:metaMetadata>
+            <imsmd:educational>
+              <imsmd:language>en</imsmd:language>
+            </imsmd:educational>
+          </imsmd:lom>
+        </metadata>
+        <imsss:sequencing>
+          <imsss:controlMode choice="true" choiceExit="true" flow="true" forwardOnly="false" useCurrentAttemptObjectiveInfo="true" useCurrentAttemptProgressInfo="true" />
+        </imsss:sequencing>
+      </item>
+      <item identifier="ITEM-F1DD58020FC7158354980FC8B61DA730" isvisible="true" identifierref="RES-34676C7D34407F7296EA4B8B9B9799C2">
+        <title>Assignment</title>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="RES-34676C7D34407F7296EA4B8B9B9799C2" adlcp:scormType="asset" type="webcontent" href="lesson1/page_1.html">
+      <file href="lesson1/page_1.html" />
+      <file href="lesson1/img/btn-submit.png" />
+      <file href="lesson1/img/caleb.png" />
+      <file href="lesson1/img/dl_edit.jpg" />
+      <file href="lesson1/img/icn-attach-file.png" />
+      <file href="lesson1/img/icn-box.png" />
+      <file href="lesson1/img/icn-brush.png" />
+      <file href="lesson1/img/icn-download-white.png" />
+      <file href="lesson1/img/icn-download.png" />
+      <file href="lesson1/img/icn-eye.png" />
+      <file href="lesson1/img/icn-gear.png" />
+      <file href="lesson1/img/icn-gradebook.png" />
+      <file href="lesson1/img/icn-highlight.png" />
+      <file href="lesson1/img/icn-input.png" />
+      <file href="lesson1/img/icn-point-annotator.png" />
+      <file href="lesson1/img/icn-pointer.png" />
+      <file href="lesson1/img/icn-reload.png" />
+      <file href="lesson1/img/icn-resize.png" />
+      <file href="lesson1/img/icn-speedgrader.png" />
+      <file href="lesson1/img/icn-strikeout.png" />
+      <file href="lesson1/img/icn-text.png" />
+      <file href="lesson1/img/icn-video-comment.png" />
+      <file href="lesson1/page_2.html" />
+      <file href="lesson1/pages2.html" />
+      <file href="lesson1/pages3.html" />
+      <file href="shared/scripts/dmceFunctions.js" />
+    </resource>
+    <resource identifier="RES-C65600927D13F900938B8AD328032DA2" adlcp:scormType="asset" type="webcontent" href="lesson1/page_2.html">
+      <file href="lesson1/page_2.html" />
+      <file href="lesson1/img/btn-submit.png" />
+      <file href="lesson1/img/caleb.png" />
+      <file href="lesson1/img/icn-attach-file.png" />
+      <file href="lesson1/img/icn-box.png" />
+      <file href="lesson1/img/icn-brush.png" />
+      <file href="lesson1/img/icn-download-white.png" />
+      <file href="lesson1/img/icn-eye.png" />
+      <file href="lesson1/img/icn-gear.png" />
+      <file href="lesson1/img/icn-gradebook.png" />
+      <file href="lesson1/img/icn-highlight.png" />
+      <file href="lesson1/img/icn-input.png" />
+      <file href="lesson1/img/icn-point-annotator.png" />
+      <file href="lesson1/img/icn-pointer.png" />
+      <file href="lesson1/img/icn-reload.png" />
+      <file href="lesson1/img/icn-resize.png" />
+      <file href="lesson1/img/icn-strikeout.png" />
+      <file href="lesson1/img/icn-text.png" />
+      <file href="lesson1/img/icn-video-comment.png" />
+      <file href="lesson1/pages2.html" />
+      <file href="lesson1/pages3.html" />
+      <file href="shared/scripts/dmceFunctions.js" />
+    </resource>
+    <resource identifier="RES-2373D1FD325903E4F1D41CFCA2C3A470" adlcp:scormType="asset" type="webcontent" href="lesson1/page_3.html">
+      <file href="lesson1/page_3.html" />
+      <file href="lesson1/img/btn-submit.png" />
+      <file href="lesson1/img/caleb.png" />
+      <file href="lesson1/img/icn-attach-file.png" />
+      <file href="lesson1/img/icn-box.png" />
+      <file href="lesson1/img/icn-brush.png" />
+      <file href="lesson1/img/icn-download-white.png" />
+      <file href="lesson1/img/icn-eye.png" />
+      <file href="lesson1/img/icn-gear.png" />
+      <file href="lesson1/img/icn-gradebook.png" />
+      <file href="lesson1/img/icn-highlight.png" />
+      <file href="lesson1/img/icn-input.png" />
+      <file href="lesson1/img/icn-point-annotator.png" />
+      <file href="lesson1/img/icn-pointer.png" />
+      <file href="lesson1/img/icn-reload.png" />
+      <file href="lesson1/img/icn-resize.png" />
+      <file href="lesson1/img/icn-rubric-comment.png" />
+      <file href="lesson1/img/icn-strikeout.png" />
+      <file href="lesson1/img/icn-text.png" />
+      <file href="lesson1/img/icn-video-comment.png" />
+      <file href="lesson1/page_4.html" />
+      <file href="lesson1/page_5.html" />
+      <file href="shared/scripts/APIWrapper.js" />
+      <file href="shared/scripts/dmceFunctions.js" />
+    </resource>
+    <resource identifier="RES-1C0D7250D311877C924AEC5C60A6B7FE" adlcp:scormType="asset" type="webcontent" href="lesson1/page_4.html">
+      <file href="lesson1/page_4.html" />
+      <file href="lesson1/img/btn-submit.png" />
+      <file href="lesson1/img/caleb.png" />
+      <file href="lesson1/img/icn-attach-file.png" />
+      <file href="lesson1/img/icn-box.png" />
+      <file href="lesson1/img/icn-brush.png" />
+      <file href="lesson1/img/icn-download-white.png" />
+      <file href="lesson1/img/icn-eye.png" />
+      <file href="lesson1/img/icn-gear.png" />
+      <file href="lesson1/img/icn-gradebook.png" />
+      <file href="lesson1/img/icn-highlight.png" />
+      <file href="lesson1/img/icn-input.png" />
+      <file href="lesson1/img/icn-point-annotator.png" />
+      <file href="lesson1/img/icn-pointer.png" />
+      <file href="lesson1/img/icn-reload.png" />
+      <file href="lesson1/img/icn-resize.png" />
+      <file href="lesson1/img/icn-rubric-comment.png" />
+      <file href="lesson1/img/icn-strikeout.png" />
+      <file href="lesson1/img/icn-text.png" />
+      <file href="lesson1/img/icn-video-comment.png" />
+      <file href="lesson1/page_5.html" />
+      <file href="shared/scripts/APIWrapper.js" />
+      <file href="shared/scripts/dmceFunctions.js" />
+    </resource>
+    <resource identifier="RES-276D2E2A5D5799103154E275FDEC1C07" adlcp:scormType="asset" type="webcontent" href="lesson1/page_5.html">
+      <file href="lesson1/page_5.html" />
+      <file href="lesson1/img/btn-submit.png" />
+      <file href="lesson1/img/caleb.png" />
+      <file href="lesson1/img/icn-attach-file.png" />
+      <file href="lesson1/img/icn-box.png" />
+      <file href="lesson1/img/icn-brush.png" />
+      <file href="lesson1/img/icn-download-white.png" />
+      <file href="lesson1/img/icn-eye.png" />
+      <file href="lesson1/img/icn-gear.png" />
+      <file href="lesson1/img/icn-gradebook.png" />
+      <file href="lesson1/img/icn-highlight.png" />
+      <file href="lesson1/img/icn-input.png" />
+      <file href="lesson1/img/icn-point-annotator.png" />
+      <file href="lesson1/img/icn-pointer.png" />
+      <file href="lesson1/img/icn-reload.png" />
+      <file href="lesson1/img/icn-resize.png" />
+      <file href="lesson1/img/icn-rubric-comment.png" />
+      <file href="lesson1/img/icn-strikeout.png" />
+      <file href="lesson1/img/icn-text.png" />
+      <file href="lesson1/img/icn-video-comment.png" />
+      <file href="lesson1/page_4.html" />
+      <file href="shared/scripts/APIWrapper.js" />
+      <file href="shared/scripts/dmceFunctions.js" />
+    </resource>
+    <resource identifier="RES-DD3699BA4EE91CB1EB4D8F608A157445" adlcp:scormType="asset" type="webcontent" href="lesson1/page_6.html">
+      <file href="lesson1/page_6.html" />
+    </resource>
+  </resources>
+</manifest>
+

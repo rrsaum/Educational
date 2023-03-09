@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Rubric</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style type="text/css" media="screen">
+      @import url( ../shared/style.css );
+    .btnRubricSelectedPts{margin:0;padding:0;margin-left:-15px;margin-right:40px;width:130%;height:100%;color:#000;border:none;font-weight:700;display:block;vertical-align:text-top!important;background-color:#a9f5bc;background:url(img/bckg-selected-green.png) bottom center no-repeat}
+    .btnRubricSelectedNoPts{margin:0;padding:0;margin-left:-15px;margin-right:40px;width:130%;height:100%;color:#000;border:none;font-weight:700;display:block;vertical-align:text-top!important;background-color:red;background:url(img/bckg-selected-red.png) bottom center no-repeat}
+    .button{border:#ccc 1px solid;border-radius:10%;padding:5px;padding-left:10px;padding-right:10px;text-align:center;text-decoration:none;display:inline-block;margin:4px 2px;cursor:pointer;background-color:#488ac7;color:#fff}
+    .button:hover{border:#ccc 1px solid;border-radius:10%;padding:5px;padding-left:10px;padding-right:10px;text-align:center;text-decoration:none;display:inline-block;margin:4px 2px;cursor:pointer;background-color:#81bef7;color:#fff}
+    </style>
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">  
+    
+    <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/3e56e0b7a1.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="../shared/scripts/dmceFunctions.js" type="text/javascript"></script>
+    <script src="../shared/scripts/APIWrapper.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    var courseStatus = "incomplete";
+    // setting the variable used to track if question has been submitted (not SCORM-related)
+    var q1Submitted = false;
+
+    function checkQuestion(formName)
+    {
+      // you can't count on any one index remaining static, so for each new interaction, check to see where we are in the cmi.interactions array
+      var index = retrieveDataValue("cmi.interactions._count");
+      
+      // Set the Interaction ID
+      storeDataValue("cmi.interactions."+index+".id", "interaction_001");
+      
+      // Set the Interaction type for this "interaction"
+      storeDataValue("cmi.interactions."+index+".type", "long-fill-in");
+      
+      // Set the user response
+      storeDataValue("cmi.interactions."+index+".learner_response", formName.answer.value); //student_response
+    
+      // the student_response field appears to be unsupported in Canvas, using the weighting field in place of it.
+      //storeDataValue("cmi.interactions."+index+".weighting", "1");
+    
+      // to describe this Interaction, we'r using the actual test question
+      storeDataValue("cmi.interactions."+index+".description", "{lang=en-US}Comments");
+      
+      
+      //check to see if the question has been submitted
+      if( !q1Submitted ) 
+      {
+        var questionIndex = retrieveDataValue( "cmi.interactions._count" ) - 1;
+        var name = retrieveDataValue ( "cmi.learner_name" );
+        var split_name = name.split(",");
+        var first_name = split_name[1].trim();
+        var last_name = split_name[0];
+        var get_uid =  retrieveDataValue( "cmi.learner_id" );
+        var uid = get_uid.split(".");
+        var user_response = retrieveDataValue( "cmi.interactions."+questionIndex+".learner_response" ); 
+
+        let $form = document.createElement('form');
+        $form.action = 'https://script.google.com/macros/s/AKfycbxY_-2frn6miQTxYR39fvqBHqx1edOi2zM7bWCNxvUBWPpAUHWA/exec';
+        $form.method = 'POST';
+
+        $form.innerHTML = '<input type="text" class="hide" name="full_name" value="'+name+'">';
+        $form.innerHTML += '<input type="text" class="hide" name="first_name" value="'+first_name+'">';
+        $form.innerHTML += '<input type="text" class="hide" name="last_name" value="'+last_name+'">';
+        $form.innerHTML += '<input type="text" class="hide" name="uid" value="'+uid[1]+'">';
+        $form.innerHTML += '<input type="text" class="hide" name="course" value="SpeedGrader">';
+        $form.innerHTML += '<input type="text" class="hide" name="course_rating" value="'+user_response+'">';
+        document.body.append($form);
+
+        $form.submit();
+        setTimeout("location.href = 'page_6.html';",200);
+        storeDataValue("cmi.exit","suspend");
+      }
+      else
+      {
+        //alreadyAnswered is a global variable defined in "interactions_assets_scripts.js"
+        alert(alreadyAnswered);
+      }
+    }// end function
+  </script>
+
+</head>
+<body onload="javascript:Initialize();" onunload="javascript:onUnexpectedExit ( '05' );">
+        <div class="instructions">
+        <h3>Instructions:</h3>
+          <ul>
+            <li>After giving <strong>'Full Marks'</strong> for each grading criteria, you will give feedback.</li>
+            <li>Enter a detailed comment, in the <strong>Assignment Comments</strong> area textbox.</li>
+            <li>Select <strong>'Submit'</strong></li>
+          </ul>
+          <div id="alert_placeholder" class="container"></div>
+      </div>
+
+<div class="container-fluid">
+    <div class="row" style="background-color: #003366; color:#fff" id="msgFail_1">
+        <div class="col-2" style="border-right: dashed #ccc 1px"><img src="img/icn-gradebook.png" width="40" height="40" class="icnh" alt="icon"><img src="img/icn-eye.png" width="40" height="40" class="icnh" alt="icon"><img src="img/icn-gear.png" width="40" height="40" class="icnh" alt="icon"></div>
+        <div class="col-5"><h4>Research Paper</h4><p style="line-height:40%">Due: January 10, 2020</p></div>
+        <div class="col-2" style="border-right: dashed #ccc 1px"><p style="text-align:center">0/1<br>Graded<p></div>
+        <div class="col-3"> &larr; &nbsp;&nbsp;&nbsp;<img src="img/caleb.png" width="40" height="40" alt="Photograph of Caleb Flight" style="height:40px; width:40px"> Caleb Flight &nbsp;&nbsp;&nbsp; &rarr;</div>
+      </div>
+    <div class="row">
+      <div class="col-7" style="border-right:#666 solid 1px">
+        <ul class="sg-actions">
+          <li><img src="img/icn-download-white.png" width="40" height="40" class="icnh last" alt="icon"></li>
+          <li class="last">Page &nbsp; <a target="ifrm" title="Back" href="pages5.html#step8" id="urlREV" onclick="setIframeSrc('ifrm', this.href); return false" class="pages">&larr;</a> 
+          <!-- DO NOT REMOVE, REQUIRED for navigating forward and backward -->
+          &nbsp;&nbsp;&nbsp;&nbsp;<span id="displayCount" class="counter">0</span>
+            <img src="img/icn-input.png" width="50" height="50" class="icnh" alt="icon"><a target="ifrm" title="Forward" href="pages5.html#step8" id="urlFWD" class="pages">&rarr;</a>&nbsp;&nbsp;of 12&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li class="last">&nbsp;&nbsp;<img src="img/icn-reload.png" width="50" height="50" class="icnh" alt="icon"></li>
+          <li class="bigger last">&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;Zoom&nbsp;&nbsp;+&nbsp;&nbsp;</li>
+          <li class="last">&nbsp;&nbsp;<img src="img/icn-resize.png" width="50" height="50" class="icnh" alt="icon"></li>
+          <li>&nbsp;
+            <img src="img/icn-pointer.png" width="50" height="50" class="icnh" alt="icon"></li>
+            <li><img src="img/icn-point-annotator.png" width="50" height="50" class="icnh" alt="icon"></li>
+            <li>
+            <img src="img/icn-highlight.png" width="50" height="50" class="icnlh" alt="icon"></li>
+            <li><img src="img/icn-text.png" width="50" height="50" class="icnlh" alt="icon"></li>
+            <li><img src="img/icn-strikeout.png" width="50" height="50" class="icnlh" alt="icon"></li>
+            <li><img src="img/icn-brush.png" width="50" height="50" class="icnlh" alt="icon"></li>
+            <li><img src="img/icn-box.png" width="50" height="50" class="icnlh" alt="icon">
+          </li>
+        </ul>
+
+        <!-- Insert Buttons Here -->
+        <iframe src="" name="btn" id="btn" width="100%" height="0%" border="0" frameborder="0" allowTransparency="true"></iframe>
+        
+        <!-- Insert Pages Here -->
+        <div class="resp-container">
+          <iframe src="pages5.html#step8" name="ifrm" id="ifrm" width="100%" height="100%" border="0" frameborder="0" allowTransparency="true"></iframe>
+        </div>
+
+      <!-- Sidebar -->
+      </div>
+      <div class="col-3"><br><br><p style="line-height:2em" id="msgFail_3"><strong>Submitted:</strong> January 4, 2020<br><strong>Submitted Files:</strong> (click to load)<br>
+        <a href="#">Caleb Flight Research Paper.docx</a></p>
+        <p>&nbsp;</p>
+        <p><strong>Assessment</strong><br>Grade out of 100<br><textarea></textarea><br><br>
+          <a href="page_4.html" class="button-rubric">View Rubric</a>
+
+
+
+
+
+          <!-- CREATE THE RUBRIC HERE -->
+        <h4>Grading</h4>
+        <div id='test' class="">
+          <div class="row" style="background-color:#eee; margin-left: 5px; border:1px #ccc solid">
+            <div class="col-7"><strong>Research Paper</strong></div>
+          </div>
+          <div class="row" style="background-color:#eee; margin-left: 5px;border:1px #ccc solid">
+            <div class="col-6" style="border-right:1px #ccc solid; border-left:1px #ccc solid"><strong>Criteria</strong></div>
+            <div class="col-6" style=""><strong>Ratings</strong></div>
+          </div>
+
+        <div class="row" style="margin-left: 5px;border-bottom:1px #ccc solid;border:1px #ccc solid;">
+            <div class="col-6" style="border-left:1px #ccc solid;border-right:1px #ccc solid"><p>Analysis / Interpretation / Application<br><br>
+              <a href="#" data-toggle="modal" data-target="#myModal1">View Longer Description</a>
+            </p>
+            </div>
+            <div class="col-6" id="rubrica">
+              retrieve score & style
+            </div>
+        </div>
+
+
+             <!-- The Modal -->
+            <div class="modal" id="myModal1">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">Analysis / Interpretation / Application</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                    The writing demonstrates appropriate analysis, evaluation, and/or synthesis of material relevant to the subject topic. In addition, it is evidenced that the student gained new understanding of the topic.
+                  </div>
+                  
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            
+        <div class="row" style="margin-left: 5px;border:1px #ccc solid;">
+            <div class="col-6" style="border-left:1px #ccc solid;border-right:1px #ccc solid"><p>Supporting References<br><br>
+              <a href="#" data-toggle="modal" data-target="#myModal2">View Longer Description</a>
+              </p>
+            </div>
+            <div class="col-6" id="rubricb">
+              retrieve score & style
+            </div>
+        </div>
+
+            
+            <!-- The Modal -->
+            <div class="modal" id="myModal2">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">Supporting References</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                    Supporting references with clearly identifiable and comparable information applicable to the topic. 
+                  </div>
+                  
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+
+        <div class="row" style="margin-left: 5px;border:1px #ccc solid;">
+            <div class="col-6" style="border-left:1px #ccc solid;border-right:1px #ccc solid"><p>Style & Mechanics<br><br>
+              <a href="#" data-toggle="modal" data-target="#myModal3">View Longer Description</a>
+              </p>
+            </div>
+            <div class="col-6" id="rubricc">
+              retrieve score & style
+            </div>
+          </div>
+
+
+            <!-- The Modal -->
+            <div class="modal" id="myModal3">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">Style & Mechanics</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                    Uses proper APA citations and reference formatting; grammatically-sound and free of spelling errors, follows required formatting rules, including required word count; and fully addresses given assignment. 
+                  </div>
+                  
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+
+    <div class="row" style="margin-left: 5px; border:1px #ccc solid">
+      <div class="col-12"><p style="text-align:right">Total Points: <span id='total'>0</span> out of 100</p></div>
+      </div>
+        <p><input type='button' value='Save'class="button" /><br><br><br></p>
+    </div>
+
+
+<div class="message" id="message">Great Job!<br>Now add a comment and submit it.</div>
+
+        <p><br><br><br><strong>Assignment Comments</strong><br>
+          <img src="img/caleb.png" width="40" height="40" alt="Photograph of Caleb Flight" style="float: left;height:40px; width:40px">Hi Professor, here is my paper on learning and simulation.
+          <br><br>
+          <span style="text-align:right; font-size:80%"><strong>Caleb Flight</strong>, January 4, 2020 at 10:36 PM</span><br>
+
+           <div id='test'>
+              <form id="q1" action="" onSubmit="return false;">
+              <fieldset>
+
+                <p id='p1' class='question'>
+                  <div class='correctAnswer'>
+                    <input id="input1" value="Add A Comment" name="answer" type="text" tabindex="0" required class="tarea" size="500">
+                  </div>
+                  <br>
+            <div id="message2">
+              <img src="img/icn-attach-file.png" width="40" height="40" class="icnh" alt="icon">
+              <img src="img/icn-video-comment.png" width="40" height="40" class="icnh" alt="icon">
+              <input type="button" value="Submit" onclick="checkQuestion(q1)" class="button"  name="submit" />
+            </div>
+            <br><br>
+            <a href="#">Download Submission Comments</a>
+            </p>
+          </fieldset>
+        </form>
+       <script type="text/javascript" >
+          disableSubmit();
+        </script>
+
+      </div>
+      </div>
+    </div>
+</div>
+
+<script>
+      var url= 'pages5.html#'
+      var count = 0;
+      //This increases/decrease the URL when hotspot is clicked
+      var buttonFWD = document.getElementById("urlFWD");
+      var buttonREV = document.getElementById("urlREV");    
+      var buttonBTN = document.getElementById("btn");    
+      var display = document.getElementById("displayCount");
+
+      buttonFWD.onclick = function(){
+        count++;
+        display.innerHTML = count;
+        // https://www.w3schools.com/jsref/met_element_setattribute.asp
+        document.getElementById("urlFWD").setAttribute("href", url+count);
+
+      }
+      buttonREV.onclick = function(){
+        count--;
+        display.innerHTML = count;
+        document.getElementById("urlREV").setAttribute("href", url+count);
+      }
+
+      buttonBTN.onclick = function(){
+        document.getElementById("btn").setAttribute("href", "buttons.html");
+      }
+
+// 3 ways to load a document into an iframe using JavaScript 
+// from www.dyn-web.com/tutorials/iframes/load/
+function setIframeSrc(id, url) {
+    document.getElementById(id).src = url;
+}
+
+var RubricTotal = 0;
+let RubricRow1 = Number(localStorage.getItem("RubricTotala"));
+if (RubricRow1 > 0) {
+document.getElementById("rubrica").innerHTML = "Full Marks<br>" + RubricRow1 + " pts";
+document.getElementById("rubrica").style = "color:#000;border:none;font-weight:700;display:block;vertical-align:text-top !important;background-color: #A9F5BC;background:url('img/bckg-selected-green.png') bottom center no-repeat;";
+} else {
+document.getElementById("rubrica").innerHTML = "No Marks<br>" + RubricRow1 + " pts";
+document.getElementById("rubrica").style = "color:#000;border:none;font-weight:700;display:block;vertical-align:text-top !important;background-color: #A9F5BC;background:url('img/bckg-selected-red.png') bottom center no-repeat;";
+}
+
+
+let RubricRow2 = Number(localStorage.getItem("RubricTotalb"));
+if (RubricRow2 > 0) {
+document.getElementById("rubricb").innerHTML = "Full Marks<br>" + RubricRow2 + " pts";
+document.getElementById("rubricb").style = "color:#000;border:none;font-weight:700;display:block;vertical-align:text-top !important;background-color: #A9F5BC;background:url('img/bckg-selected-green.png') bottom center no-repeat;";
+} else {
+document.getElementById("rubricb").innerHTML = "No Marks<br>" + RubricRow2 + " pts";
+document.getElementById("rubricb").style = "color:#000;border:none;font-weight:700;display:block;vertical-align:text-top !important;background-color: #A9F5BC;background:url('img/bckg-selected-red.png') bottom center no-repeat;";
+}
+
+let RubricRow3 = Number(localStorage.getItem("RubricTotalc"));
+if (RubricRow3 > 0) {
+document.getElementById("rubricc").innerHTML = "Full Marks<br>" + RubricRow3 + " pts";
+document.getElementById("rubricc").style = "color:#000;border:none;font-weight:700;display:block;vertical-align:text-top !important;background-color: #A9F5BC;background:url('img/bckg-selected-green.png') bottom center no-repeat;";
+} else {
+document.getElementById("rubricc").innerHTML = "No Marks<br>" + RubricRow3 + " pts";
+document.getElementById("rubricc").style = "color:#000;border:none;font-weight:700;display:block;vertical-align:text-top !important;background-color: #A9F5BC;background:url('img/bckg-selected-red.png') bottom center no-repeat;";
+}
+  RubricTotal = RubricRow1+RubricRow2+RubricRow3;
+  document.getElementById("total").innerHTML = RubricTotal;
+
+if (RubricTotal == 100) {
+  let daname = " "+localStorage.getItem('name');
+  document.getElementById("message").innerHTML = "Great Job!<br>Now add a comment and select Submit to complete this simulation.";
+  document.getElementById("message").setAttribute("class","message-yes");
+  document.getElementById("message2").setAttribute("class","");
+} else {
+  let daname = " "+localStorage.getItem('name');
+  document.getElementById("message").innerHTML = "Oops. You did not give Caleb 'Full Marks.' Go back by selecting '<a href='page_4.html'>View Rubric</a>' and give Caleb 'Full Marks.'";
+  document.getElementById("message2").setAttribute("class","hide");
+}
+</script>
+
+</body>
+</html>
