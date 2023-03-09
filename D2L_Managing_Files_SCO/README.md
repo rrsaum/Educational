@@ -1,0 +1,1 @@
+This is one of several learning objects I created in 2003 to teach faculty how to use the Desire2Learn interface. This was the prototype lesson which was developed in Flash. It uses style sheets and XML to improve the accessibility of the content. This approach also allowed us to dynamically switch the language of the instructions. 
