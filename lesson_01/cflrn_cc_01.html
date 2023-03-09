@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>CidiLabs 101 Participant Survey</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="../Shared Files/css/style.css" type="text/css" />
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/3e56e0b7a1.js" crossorigin="anonymous"></script>  
+
+	<script type="text/javascript" src="../Shared Files/scripts/dmceFunctions.js"></script>
+	<script type="text/javascript" src="../Shared Files/scripts/APIWrapper.js"></script>
+
+	<script type="text/javascript">
+		
+		var courseStatus = "incomplete";
+		// setting the variable used to track if question has been submitted (not SCORM-related)
+		var q1Submitted = false;
+		/*******************************************************************************
+		**
+		** This function checks to see if the user has already submitted an answer to the question.
+		** If it is the first time an answer has been submitted the "radio_validate" function is called.
+		** Please refer to radio_validate in "interactions_assets_scripts.js" for more information.
+		** 
+		** If the question has been answered then the user is notified.
+		**
+		** Inputs:  formName - String - the id of the form to check
+		**
+		** Return:  None
+		**
+		*******************************************************************************/
+		function checkQuestion(formName)
+		{
+			// you can't count on any one index remaining static, so for each new interaction, check to see where we are in the cmi.interactions array
+			var index = retrieveDataValue("cmi.interactions._count");
+			
+			// Set the Interaction ID
+			storeDataValue("cmi.interactions."+index+".id", "interaction_001");
+			
+			// Set the Interaction type for this "interaction"
+			storeDataValue("cmi.interactions."+index+".type", "choice");
+			
+			// Set the user response
+			storeDataValue("cmi.interactions."+index+".student_response", formName.answer.value); //formName
+		
+			// setting the correct answer for our validation on the page (not SCORM-related)
+			// NOTE:  You might want to obfuscate the access to this so the answer isn't easily viewable
+			var correctAnswer = "5"; //should be the same as the "value" attribute of the radio button with the correct answer
+			
+			
+			// since we're using "correctAnswer" as a variable for the correct response, we set the Interaction's correct response to "correctAnswer"
+			storeDataValue("cmi.interactions."+index+".correct_responses.0.pattern", correctAnswer);
+		
+			// the student_response field appears to be unsupported in Canvas, using the weighting field in place of it.
+			storeDataValue("cmi.interactions."+index+".weighting", formName.answer.value);
+		
+			// to describe this Interaction, we'r using the actual test question
+			storeDataValue("cmi.interactions."+index+".description", "{lang=en-US}The following is an example of what Interaction Type? Strongly Agree | Agree | Neither Agree nor Disagree | Disagree | Strongly Disagree");
+			
+			
+			//check to see if the question has been submitted
+			if( !q1Submitted ) 
+			{
+				
+				//radio_validate returns a boolean: true = the user answered the question, false = the user did not answer the question (not SCORM-related)
+				answerSelected = radio_validate( formName, correctAnswer, index, 'interactions' ); 
+
+				var questionIndex = retrieveDataValue( "cmi.interactions._count" ) - 1;
+				var name = retrieveDataValue ( "cmi.learner_name" );
+				var split_name = name.split(",");
+				var first_name = split_name[1].trim();
+				var last_name = split_name[0];
+				var get_uid =  retrieveDataValue ( "cmi.learner_id" );
+				var uid = get_uid.split(".");
+				var user_response = retrieveDataValue( "cmi.interactions."+questionIndex+".weighting" );
+
+
+				let $form = document.createElement('form');
+				$form.action = 'https://script.google.com/macros/s/AKfycbxY_-2frn6miQTxYR39fvqBHqx1edOi2zM7bWCNxvUBWPpAUHWA/exec';
+				$form.method = 'POST';
+
+				$form.innerHTML = '<input type="text" class="hide" name="full_name" value="'+name+'">';
+				$form.innerHTML += '<input type="text" class="hide" name="first_name" value="'+first_name+'">';
+				$form.innerHTML += '<input type="text" class="hide" name="last_name" value="'+last_name+'">';
+				$form.innerHTML += '<input type="text" class="hide" name="uid" value="'+uid[1]+'">';
+				$form.innerHTML += '<input type="text" class="hide" name="course" value="SPW CidiLabs 101">';
+				$form.innerHTML += '<input type="text" class="hide" name="course_rating" value="'+user_response+'">';
+				document.body.append($form);
+				$form.submit();
+				// GoToPage( 'interactions_cca_question_fb.html' );
+				storeDataValue("cmi.success_status", "passed");
+				setTimeout("location.href = 'interactions_cca_question_fb.html';",300);
+				
+				// If you are interested in how we set the set the learnerResponse, please 
+				// refer to the dmceFunctions.js file
+				
+				if(answerSelected) 
+				{
+					q1Submitted = true;
+
+					document.getElementById('submit').disabled = true;
+					document.getElementById('reset').disabled = true;
+				}
+			}
+			else
+			{
+				//alreadyAnswered is a global variable defined in "interactions_assets_scripts.js"
+				alert(alreadyAnswered);
+			}
+		}// end function
+
+	</script>
+</head>
+
+<body onload="javascript:Initialize();" onunload="javascript:onUnexpectedExit ( '01' );" class="bg-light">
+<div class="container">
+ 
+		<h1>Feedback Survey</h1>
+				<!-- the id is the formName that should get passed to the JavaScript function called in the Submit button "onclick" attrib  -->
+				<form id="q1" action="" onSubmit="return false;" class="text-center border border-light p-5">
+					<fieldset>
+					<legend><i class="fas fa-clipboard-check"></i> Do you agree/disagree with the following statement?</legend>
+					<p>The content of this self-paced workshop will be benefitial to my teaching.</p>
+						<div class="form-group">
+						
+						  <div class="custom-control custom-radio">
+							<input id="1" value="1" name="answer" type="radio" class="custom-control-input" onclick="enableSubmit()" tabindex="0" required>
+							<label class="custom-control-label" for="1">Strongly Disagree</label>
+						  </div>
+						  <div class="custom-control custom-radio">
+							<input id="2" value="2" name="answer" type="radio" class="custom-control-input" onclick="enableSubmit()" tabindex="1" required>
+							<label class="custom-control-label" for="2">Disagree</label>
+						  </div>
+						  <div class="custom-control custom-radio">
+							<input id="3" value="3" name="answer" type="radio" class="custom-control-input" onclick="enableSubmit()" tabindex="2" required>
+							<label class="custom-control-label" for="3">Neither Agree nor Disagree</label>
+						  </div>
+						  <div class="custom-control custom-radio">
+							<input id="4" value="4" name="answer" type="radio" class="custom-control-input" onclick="enableSubmit()" tabindex="3" required>
+							<label class="custom-control-label" for="4">Agree</label>
+						  </div>
+						  <div class="custom-control custom-radio">
+							<input id="5" value="5" name="answer" type="radio" class="custom-control-input" onclick="enableSubmit()" tabindex="4" checked required>
+							<label class="custom-control-label" for="5">Strongly Agree</label>
+						  </div>
+
+						</div>
+					</fieldset>
+					<br/>
+					<div>
+						<input type="reset" name="reset" value="Reset" tabindex="5" />&nbsp;&nbsp;
+						<input type="button" name="submit" value="Submit" onclick="checkQuestion(q1)" tabindex="5" />
+						<br/><span id="feedback">&nbsp;</span>						
+					</div>
+				</form>
+				<script type="text/javascript" >
+					disableSubmit();
+				</script>
+		</div>		
+		<!-- end main content -->
+	
+		<!-- Bottom page navigation -->
+		<form id="navigation" action="">
+			<div id="prevBtn"></div>		
+		</form>
+</div>
+
+</body>
+</html>

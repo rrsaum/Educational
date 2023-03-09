@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>CidiLabs 101 Participant Survey</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../Shared Files/css/style.css" type="text/css" />
+	
+	<!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/3e56e0b7a1.js" crossorigin="anonymous"></script>  
+	
+	<script type="text/javascript" src="../Shared Files/scripts/dmceFunctions.js"></script>
+	<script type="text/javascript" src="../Shared Files/scripts/APIWrapper.js"></script>
+
+
+	<script type="text/javascript">
+		// call to the LMS to get the last interaction index
+		questionIndex = retrieveDataValue( "cmi.interactions._count" ) - 1;
+		
+		//get the id of the question that was answered to display the appropriate feedback
+		questionID = retrieveDataValue( "cmi.interactions."+questionIndex+".id" );
+		
+		//get the result that was stored based on the learner's answer 
+		questionResult = retrieveDataValue( "cmi.interactions."+questionIndex+".result" );
+		
+		// initialize variables to set and use for feedback
+		var courseStatus = "completed";
+		var feedback = "";
+		var corFeedback = "";
+		var incorFeedback = "";
+		var name = retrieveDataValue ( "cmi.learner_name" );
+		var split_name = name.split(",");
+		var get_uid =  retrieveDataValue ( "cmi.learner_id" );
+		var uid = get_uid.split(".");
+		var user_response = retrieveDataValue( "cmi.interactions."+questionIndex+".weighting" );
+		
+		
+		
+		// variable used to set the URL for the next question
+		var nextPageURL = "";
+		
+		// varibale used to set the onUnexpectedExit page number
+		var exit = "";
+		
+		//depending on which question was just answered and passed to the page set and store the appropriate
+		//variables
+		switch ( questionID ){
+			case "interaction_001":
+				corFeedback = "Thank you for your feedback!";
+				incorFeedback = "Thank you for your feedback!";
+				nextPageURL = "cflrn_cc_02.html";
+				exit = "01";
+				break;
+			case "interaction_002":
+				corFeedback = "The True/False Interaction Type is a question or statement with two possible responses; the responses can be \"true\" or \"false.\"";
+				incorFeedback = "The True/False Interaction Type is a question or statement with two possible responses; the responses can be \"true\" or \"false.\"";		
+				nextPageURL = "interactions_cca_question_03.html";
+				exit = "02";
+				break;
+			default:
+				corFeedback = "Error.";
+				incorFeedback = "Error.";
+				nextPageURL = "";
+				break;
+		}
+		
+				
+		var result = "";
+		if( questionResult == "correct" )
+		{
+			result = "<span style='color:#0099FF;'></span>";
+			feedback = corFeedback;
+		}
+		else
+		{
+			result = "<span style='color:#0099FF;'></span>";
+			feedback = incorFeedback;
+		}
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Thank You!</h1>
+		<div id="Main_Content">
+			<p><br><script type="text/javascript">document.writeln( split_name['1']+", We appreciate your feedback." );</script> </p>
+			<p>&nbsp;</p>
+			<p>Select the Next button to continue.</p>
+		</div>
+	</div>
+	
+</body>
+</html>
+

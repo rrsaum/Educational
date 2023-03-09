@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>SCORM Data Model Example</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+    <style type="text/css">
+<!--
+.style1 {font-family: "Courier New", Courier, mono}
+-->
+    </style>
+</head>
+
+<body>
+	<div id="wrapper">
+	 
+		<!-- Course Title -->
+		<h1 id="smallTitle">Sharable Content Object Reference Model (SCORM<span style="font-size:xx-small; vertical-align:text-top">&reg;</span>) 2004</h1>
+		<h1>Data Model Elements</h1>
+		
+		<!-- Section Title that appears in top box -->
+		<h2>Best Practices for Content Developers</h2>
+		
+		<!-- Main page content -->
+		<div id="fullScreen">
+				<p id="heading">Best Practices for Content Developers</p>
+				<p><strong> Interactions</strong><br />
+                    <br />
+                    <em>Interaction Identifiers</em><br />
+  Organizations should define naming conventions for <strong>cmi.interactions.<em>n</em>.id</strong> so that each interaction has a unique identifier, at least within the scope of the Sharable Content Object (SCO). </p>
+				<p><strong> Score</strong><br />
+                    <br />
+                    <em>Development of Algorithms</em><br />
+  Instructional Designers and Content Developers should collaborate in the development of the algorithms used to calculate scaled scores. <br />
+  <br />
+  <em>Methods for calculating score</em></p>
+				<ol>
+				  <li> Keep a running tally after each questions is answered.</li>
+				  <li> Use the interactions data model element to record the learner's and loop through all questions tallying up how many results were correct and incorrect.</li>
+				  <li>Other - there are many individual methods for how and when to calculate the score.</li>
+		  </ol>
+				<p>                  <em>Calculating Scaled Score<br />
+				</em>There are many ways to calculate scaled score, one of the more common ones is:<br />
+                  (Sum of each question's Value * Weight ) / Total weight possible. </p>
+				<p><strong>Completion Status</strong></p>
+				<p><em>Setting Completion Status <br />
+				</em>To make the course, or package, &quot;completed,&quot; use a combination of completion_status on the SCO(s) and sequencing rules (as mentioned in the SCORM Content Aggregation Model (CAM) Version 1.3). This may involve a series of sequencing rules that appear as the following:</p>
+				<blockquote>
+				  <pre> &lt;imsss:sequencing&gt;
+   &lt;imsss:rollupRules rollupProgressCompletion=&quot;false&quot; /&gt;
+ &lt;/imsss:sequencing&gt; </pre>
+		  </blockquote>
+				<p>This indicates that the item associated with this sequencing rule doesn't count towards your course completion.</p>
+				<p>When this sequencing rule is on a parent &lt;item&gt; in the manifest: </p>
+				<blockquote>
+				  <pre>&lt;imsss:rollupRules rollupProgressCompletion=&quot;false&quot; /&gt;</pre>
+		  </blockquote>
+				<p><br>
+				  An LMS will ignore any children of a parent &lt;item&gt; in the manifest with regards to any requirements for course completion -- whether you use &quot;completion_status&quot; on any of those SCOs or not. You can still designate these SCOs as completed. Assuming you're developing with &quot;completion_status&quot; to achieve some result, more work either with your code or with sequencing in the manifest will be required to take advantage of &quot;completion_status&quot; </p>
+				<p>In any other instance, however, the LMS will pay attention, going all the way down into the &lt;item&gt; children to look for what to ignore. </p>
+	
+			<p><strong>Overall Development</strong></p>
+                  <p>
+			<em>Pop-Up Windows</em><br />
+                  In order to track the learner's activity, it is best to aviod using any additional pop-up windows, especially if you are unsure what LMS will be displaying your content.
+                  </p>
+			<p>
+                  <em>SCOs and Assets</em><br />
+                  Do not arbitrarily decide what content will be a Sharable Content Object (SCO), collaborate with the project team and decide before you begin any development.
+			</p>
+                  <p>
+                  <em>508 &amp; Assessment Feedback</em><br />
+                  A screen reader only sees content that is available on the initial page load. If any text is dynamically generated with javascript, or a dynamic text field in flash, the screen reader will not recognize it. In order to make feedback accessible, it is best to display it on a new page.
+                  </p>
+			<p>
+                  <em>Meta-data</em><br />
+                  Keep a running record of key information about text and file attributes. Update your meta-data on a regular basis.
+</p>
+			<p>
+                  <em>Bookmarking</em><br />
+                  If you have a multipage SCO, it is best to set a bookmark when each page unloads. This will account for any unexpected exits, and upon returning, the learner will be brought to the last page they were at before leaving. We recommend creating a function that uses cmi.location and cmi.exit. This function should be called when the page unloads.
+			</p>
+                  <p>
+			<em>Manifest</em>
+			</p>
+			<ul>
+                  <li>Group all dependent resources together and then reference them with a common name.</li>
+                  <li>Make sure all ids within the scope of the same manifest are unique. They may be developed to be globally unique.</li>
+                  <li>Open the manifest in Internet Explorer since it is an xml file. This is one quick and easy way to test to see if the xml file is well formed. Once you have ensured that it is well formed, then test your manifest with an XML validating parser (this can be done by testing the manifest in the SCORM Conformance Test Suite).</li>
+		</p>
+	  </div>
+	</div>
+</body>
+</html>

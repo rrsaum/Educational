@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This is a Reload version 1.1 SCORM 2004 Content Package document-->
+<!--Spawned from the Reload Content Package Generator - http://www.reload.ac.uk-->
+<manifest xmlns="http://www.imsglobal.org/xsd/imscp_v1p1" xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_v1p3" xmlns:imsss="http://www.imsglobal.org/xsd/imsss" xmlns:adlseq="http://www.adlnet.org/xsd/adlseq_v1p3" xmlns:adlnav="http://www.adlnet.org/xsd/adlnav_v1p3" identifier="MANIFEST-39701457-7BE2-1369-28AD-2534864860BB" xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd http://ltsc.ieee.org/xsd/LOM lom.xsd http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd" version="1.3">
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>2004 3rd Edition</schemaversion>
+  </metadata>
+  <organizations default="ORG-FCC0FD46-6764-ADD4-6043-AD447E6CF9F5">
+    <organization identifier="ORG-FCC0FD46-6764-ADD4-6043-AD447E6CF9F5" structure="hierarchical">
+      <title>CidiLabs 101</title>
+      <item identifier="ITEM-069793BB-B603-57C8-6D9E-6A268524580A" isvisible="true">
+        <title>Participant Feedback Survey</title>
+        <item identifier="ITEM-23D634D4-AFD8-C836-76C4-AC7D14D4F7B7" isvisible="true" identifierref="RES-892297C1-C271-AFB7-6F8B-3858FE70B9EF">
+          <title>SCORM Data Model Example</title>
+          <adlnav:presentation>
+            <adlnav:navigationInterface>
+              <adlnav:hideLMSUI>continue</adlnav:hideLMSUI>
+              <adlnav:hideLMSUI>previous</adlnav:hideLMSUI>
+            </adlnav:navigationInterface>
+          </adlnav:presentation>
+        </item>
+        <metadata>
+          <imsmd:lom xmlns:imsmd="http://ltsc.ieee.org/xsd/LOM">
+            <imsmd:general>
+              <imsmd:title>
+                <imsmd:string language="en">CidiLabs 101 Participant Feedback</imsmd:string>
+              </imsmd:title>
+              <imsmd:language>en</imsmd:language>
+            </imsmd:general>
+            <imsmd:lifeCycle>
+              <imsmd:version>
+                <imsmd:string language="en">1</imsmd:string>
+              </imsmd:version>
+            </imsmd:lifeCycle>
+            <imsmd:metaMetadata>
+              <imsmd:language>en</imsmd:language>
+            </imsmd:metaMetadata>
+            <imsmd:educational>
+              <imsmd:language>en</imsmd:language>
+            </imsmd:educational>
+          </imsmd:lom>
+        </metadata>
+        <imsss:sequencing>
+          <imsss:controlMode choice="true" choiceExit="true" flow="true" forwardOnly="false" useCurrentAttemptObjectiveInfo="true" useCurrentAttemptProgressInfo="true" />
+        </imsss:sequencing>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="RES-892297C1-C271-AFB7-6F8B-3858FE70B9EF" type="webcontent" href="lesson_01/cflrn_cc_01.html" adlcp:scormType="sco">
+      <file href="Shared Files/css/style.css" />
+      <file href="Shared Files/images/background.jpg" />
+      <file href="Shared Files/images/score_bill.png" />
+      <file href="Shared Files/images/score_paper.jpg" />
+      <file href="Shared Files/images/score_clock.jpg" />
+      <file href="Shared Files/images/score_weight.jpg" />
+      <file href="Shared Files/images/score_a.jpg" />
+      <file href="Shared Files/images/score_branch.jpg" />
+      <file href="Shared Files/images/score_controls.jpg" />
+      <file href="Shared Files/images/score_paper_selected.jpg" />
+      <file href="Shared Files/images/score_clock_selected.jpg" />
+      <file href="Shared Files/images/score_weight_selected.jpg" />
+      <file href="Shared Files/images/score_a_selected.jpg" />
+      <file href="Shared Files/images/score_branch_selected.jpg" />
+      <file href="Shared Files/images/score_controls_selected.jpg" />
+      <file href="Shared Files/scripts/dmceFunctions.js" />
+      <file href="Shared Files/scripts/APIWrapper.js" />
+      <file href="lesson_01/cflrn_cc_02.html" />
+      <file href="lesson_01/cflrn_cc_01.html" />
+    </resource>
+  </resources>
+</manifest>
+
