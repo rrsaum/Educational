@@ -1,0 +1,24 @@
+
+title {
+  color: #000000;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+}
+
+link {
+  color: #cccccc;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  display: block;
+}
+
+info {
+  color: #000050;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+}

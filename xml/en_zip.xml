@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<Zip>
+	<item> 
+		<Action>1.  select the file(s) or folder(s) you wish to download</Action>
+
+	</item>	
+	<item> 
+		<Action><![CDATA[2. Select the <b><i>Zip Files</i></b> link]]></Action>
+	</item>	
+	<item> 
+		<Action>3.  select the location to save your zip file to</Action>
+	</item>	
+	<item> 
+		<Action><![CDATA[4. Select the <b><i>Save button</b></i>]]></Action>
+	</item>	
+	<item>	
+		<Action></Action>
+	</item>		
+</Zip>
+
+

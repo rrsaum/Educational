@@ -1,0 +1,106 @@
+	body 
+{   
+font-family: Verdana; 
+font-size: 13px; 
+ }
+
+	h3
+{	
+background-color: #053364;
+color: #ffffff;
+padding: 3px;
+width: 640px;
+}
+
+h5
+{
+background-color: #6E6E6E;
+color: #ffffff;
+padding: 2px;
+width: 50%;
+}
+
+.click
+{
+color: #008000;
+font-weight: bold;
+font-style: italic;
+}
+
+a:link
+{
+color: #053364;
+}
+
+a:visited
+{
+color: #053364;
+}
+
+a:hover
+{
+color: #5688BD;
+}
+
+a:active
+{
+color: #5688BD;
+}
+
+#nav
+{
+color: #053364;
+width: 100%;
+}
+
+	#nav a, #nav a:visited
+{
+color: #053364;
+display: block;
+background-color: #ffffff;
+padding-left:4px;
+padding-right:0px;
+padding-top:2px;
+padding-bottom:2px;
+width: 100%;
+}
+
+
+	#nav a:hover
+{
+color: #ffffff;
+background-color: #5688BD;
+}
+
+	#nav a:active
+{
+color: #1E90FF;
+background-image: url('images/link_bg_act.jpg');
+}
+
+	img   {
+border: none;
+}
+
+	#lic   {
+font-family: Verdana; 
+font-size: 12px; 
+}
+
+	#lic img   {
+border: none;
+width: 88px;
+height: 31px;
+}
+
+	#aut   {
+font-family: Verdana; 
+font-size: 12px; 	
+position: absolute;
+bottom: 0px;
+right: 0px;	
+}
+
+
+
+

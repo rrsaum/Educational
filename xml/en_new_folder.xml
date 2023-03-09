@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<New&nbsp;Folder>
+	<item> 
+		<Action><![CDATA[1.  Select the <b><i>New</i></b> link ]]></Action>
+
+	</item>	
+	<item> 
+		<Action>2.  The New Folder dialog appears</Action>
+	</item>	
+	<item> 
+		<Action>3.  Enter the name desired for your new folder</Action>
+	</item>	
+	<item> 
+		<Action>4.  Select the OK button</Action>
+	</item>	
+	<item>	
+		<Action><![CDATA[<span class='snake'>Hello!</span>]]></Action>
+	</item>		
+</New&nbsp;Folder>
+
+
